@@ -7,7 +7,7 @@ class user {
     }
 }
 module.exports = {
-    getAllUserInfo: function (page, pageSize){
+    /*getAllUserInfo: function (page, pageSize){
         countUsers = pageSize*page;
         if(page <= 0 || pageSize <= 0){
             return ('Номер страницы и/или размер страницы должны быть положительными!')
@@ -36,5 +36,15 @@ module.exports = {
         let newUser = new user(fname, sname);
         model.users.push(newUser);
         return model.users[5];
+    },*/
+    deleteUser: function (id){
+
+        let indexId;
+        if (id in model.users) {
+            indexId = model.users.indexOf(id);
+            delete model.users[id];
+        }
+
+        return 200;
     }
 }
