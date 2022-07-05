@@ -1,6 +1,6 @@
 let model = require('../model/hello');
 module.exports = {
     getHelloModel: function () {
-        return model;
+        return model.message.txt;
     }
 }
