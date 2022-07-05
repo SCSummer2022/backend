@@ -8,18 +8,33 @@ class user {
 }
 module.exports = {
     getAllUserInfo: function (page, pageSize){
+        countUsers = pageSize*page;
+        if(page <= 0 || pageSize <= 0){
+            return ('Номер страницы и/или размер страницы должны быть положительными!')
+        }
+        else if (countUsers <= model.users.length){    
+            let userList = new Array();
             
-        let userList = new Array();
-            
-            for(let i = page*pageSize-pageSize; i < page*pageSize; i++) {
+            for(let i = countUsers-pageSize; i < countUsers; i++) {
                 userList.push(model.users[i]);
             }
             return userList;
-
+        }
+        else if (countUsers - pageSize <= model.users.length){
+            let userList = new Array();
+            
+            for(let i = countUsers-pageSize; i < countUsers; i++) {
+                userList.push(model.users[i]);
+            }
+            return userList;
+        }
+        else if(countUsers - pageSize> model.users.length){
+            return('Больше пользователей нет');
+        }
     },
     addNewUser: function (fname, sname){
         let newUser = new user(fname, sname);
         model.users.push(newUser);
-        return newUser;
+        return model.users[5];
     }
 }
