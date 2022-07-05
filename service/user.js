@@ -7,6 +7,9 @@ class user {
     }
 }
 module.exports = {
+    findUser: function (userId){
+        return model.users[5];
+    },
     getAllUserInfo: function (page, pageSize){
         countUsers = pageSize*page;
         if(page <= 0 || pageSize <= 0){

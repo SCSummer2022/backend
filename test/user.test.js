@@ -11,3 +11,12 @@ it ('Should return User List', function(done) {
         sname: 'Кошкин'
     }).end(done)
 })
+it ('Should return User Info', function(done) {
+    req(app).get('/').
+    expect(
+        {
+            id: 5,
+            fname: 'Ваня',
+            sname: 'Андреев'
+        }).end(done)
+})
