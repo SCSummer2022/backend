@@ -1,12 +1,7 @@
-const request = require('supertest')
-const express = require("express")
-const app = express()
-app.use('/', require('../api/hello'));
+const request = require('supertest');
 
-it('api\\hello.js', (done) => {
-    request(app).get('/').expect({
-        message: {
-            txt: "hello world!!!"
-        }
-    }).end(done)
-})
+var app = require('../index.js').app;
+
+it('should return hello world!!!', function (done) {
+    request(app).get('/').expect('{"message":{"txt":"hello world!!!"}}').end(done);
+});
