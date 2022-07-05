@@ -8,7 +8,12 @@ class user {
 }
 module.exports = {
     findUser: function (userId){
-        return model.users[5];
+        for (let i in model.users) {
+            if (model.users[i].id == userId) {
+                return model.users[i];
+                break;
+            }
+        }
     },
     getAllUserInfo: function (page, pageSize){
         countUsers = pageSize*page;
