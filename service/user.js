@@ -7,14 +7,17 @@ class user {
     }
 }
 module.exports = {
-    /*getAllUserInfo: function (page, pageSize){
+    findUser: function (userId){
+        return model.users[5];
+    },
+    getAllUserInfo: function (page, pageSize){
         countUsers = pageSize*page;
         if(page <= 0 || pageSize <= 0){
             return ('Номер страницы и/или размер страницы должны быть положительными!')
         }
-        else if (countUsers <= model.users.length){    
+        else if (countUsers <= model.users.length){
             let userList = new Array();
-            
+
             for(let i = countUsers-pageSize; i < countUsers; i++) {
                 userList.push(model.users[i]);
             }
@@ -22,7 +25,7 @@ module.exports = {
         }
         else if (countUsers - pageSize <= model.users.length){
             let userList = new Array();
-            
+
             for(let i = countUsers-pageSize; i < countUsers; i++) {
                 userList.push(model.users[i]);
             }
@@ -36,7 +39,7 @@ module.exports = {
         let newUser = new user(fname, sname);
         model.users.push(newUser);
         return model.users[5];
-    },*/
+    },
     deleteUser: function (id){
 
         let indexId;
