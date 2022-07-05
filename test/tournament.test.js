@@ -2,10 +2,16 @@ const request = require('supertest');
 var app = require('../index.js');
 
 
-it('should return hello world!!!', function (done) {
-    request(app).get('/tournaments').expect({
-        tournament: {
-            txt: "hello world!!!"
+it('Delete tournament', function (done) {
+    request(app).get('/tournaments/delete').expect([
+        {
+            "id": 2,
+            "tournamentName": "Турнир 2"
+        },
+        {
+            "id": 3,
+            "tournamentName": "Турнир 3"
         }
-    }).end(done);
+    ]
+    ).end(done);
 });
