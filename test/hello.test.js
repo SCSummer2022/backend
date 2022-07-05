@@ -1,7 +1,7 @@
 const request = require('supertest');
-var router = require('../api/hello');
+var app = require('../index.js');
 
 
 it('should return hello world!!!', function (done) {
-    request(router).get('/').expect("hello world!!!").end(done);
+    request(app).get('/').expect({ "message": { "txt": "hello world!!!" } }).end(done);
 });
