@@ -1,5 +1,5 @@
 module.exports = {
     message: {
-        txt: "hello world!!!"
+        txt: 'hello world!!!'
     }
 }
