@@ -1,4 +1,6 @@
 const req = require('supertest');
+const model = require("../model/user");
+const service = require("../service/user");
 
 let app = require('../index.js').app
 
@@ -23,4 +25,9 @@ it ('Should return User Info', function(done) {
 
 it ('Should return user deleted', function(done) {
     req(app).delete('/').expect(200).end(done)
+
+})
+
+it ('Should return user edited', function(done) {
+    req(app).put('/').expect(200).end(done)
 })
