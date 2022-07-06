@@ -115,7 +115,7 @@ const MatchParticipant = sequelize.sequelize.define('MatchParticipant', {
     match_id: {type: DataTypes.STRING, allowNull: false},
     user_id: {type: DataTypes.STRING, allowNull: false},
     team_id: {type: DataTypes.STRING, allowNull: false},
-    match_result_id: {type: DataTypes.STRING, allowNull: false}
+    match_result: {type: DataTypes.STRING, allowNull: false}
 });
 MatchParticipant.sync()
     .then(() => MatchParticipant.create({
@@ -123,7 +123,7 @@ MatchParticipant.sync()
             match_id: 'some_id',
             user_id: 'some_id',
             team_id: 'some_id',
-            match_result_id: 'some_id'
+            match_result: 'some_id'
         })
     )
 

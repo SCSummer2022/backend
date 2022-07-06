@@ -1,7 +1,7 @@
 
 let tournament = require('../model/tournament');
-const {TournamentType} = require("../model/tournament");
-let users = require('../model/users');
+//const {TournamentType} = require("../model/tournament");
+
 module.exports = {
     getHelloModel: async function () {
         let result = {};
