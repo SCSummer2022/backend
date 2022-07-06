@@ -3,8 +3,8 @@ const {DataTypes} = require('sequelize');
 
 const TournamentType = sequelize.sequelize.define('TournamentType', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    name: DataTypes.STRING,
-    code: DataTypes.STRING
+    name: {type: DataTypes.STRING, allowNull: false},
+    code: {type: DataTypes.STRING, allowNull: false}
 });
 TournamentType.sync()
     .then(() => TournamentType.create({
@@ -16,8 +16,8 @@ TournamentType.sync()
 
 const SportType = sequelize.sequelize.define('SportType', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    name: DataTypes.STRING,
-    code: DataTypes.STRING
+    name: {type: DataTypes.STRING, allowNull: false},
+    code: {type: DataTypes.STRING, allowNull: false}
 });
 SportType.sync()
     .then(() => SportType.create({
@@ -29,7 +29,7 @@ SportType.sync()
 
 const City = sequelize.sequelize.define('City', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    name: DataTypes.STRING
+    name: {type: DataTypes.STRING, allowNull: false}
 });
 City.sync()
     .then(() => City.create({
@@ -40,20 +40,20 @@ City.sync()
 
 const Tournament = sequelize.sequelize.define('Tournament', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    name: DataTypes.STRING,
-    tournament_type_id: {type: DataTypes.STRING},
-    sport_type : DataTypes.STRING,
-    start_date : DataTypes.DATE,
-    end_date : DataTypes.DATE,
-    school_or_city : DataTypes.BOOLEAN,
-    city : DataTypes.STRING,
-    participants_min : DataTypes.INTEGER,
-    participants_max : DataTypes.INTEGER,
-    age_min : DataTypes.INTEGER,
-    age_max : DataTypes.INTEGER,
-    class_min : DataTypes.INTEGER,
-    class_max : DataTypes.INTEGER,
-    team_size : DataTypes.INTEGER
+    name: {type: DataTypes.STRING, allowNull: false},
+    tournament_type_id: {type: DataTypes.STRING, allowNull: false},
+    sport_type : {type: DataTypes.STRING, allowNull: false},
+    start_date : {type: DataTypes.DATE, allowNull: false},
+    end_date : {type: DataTypes.DATE, allowNull: false},
+    school_or_city : {type: DataTypes.BOOLEAN, allowNull: false},
+    city : {type: DataTypes.STRING, allowNull: false},
+    participants_min : {type: DataTypes.INTEGER, allowNull: false},
+    participants_max : {type: DataTypes.INTEGER, allowNull: false},
+    age_min : {type: DataTypes.INTEGER, allowNull: false},
+    age_max : {type: DataTypes.INTEGER, allowNull: false},
+    class_min : {type: DataTypes.INTEGER, allowNull: false},
+    class_max : {type: DataTypes.INTEGER, allowNull: false},
+    team_size : {type: DataTypes.INTEGER, allowNull: false}
 });
 Tournament.sync()
     .then(() => Tournament.create({
@@ -99,8 +99,8 @@ TournamentParticipant.sync()
 
 const Match = sequelize.sequelize.define('Match', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    tournament_id: DataTypes.STRING,
-    name: DataTypes.STRING
+    tournament_id: {type: DataTypes.STRING, allowNull: false},
+    name: {type: DataTypes.STRING, allowNull: false}
 });
 Match.sync()
     .then(() => Match.create({
@@ -112,10 +112,10 @@ Match.sync()
 
 const MatchParticipant = sequelize.sequelize.define('MatchParticipant', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    match_id: DataTypes.STRING,
-    user_id: DataTypes.STRING,
-    team_id: DataTypes.STRING,
-    match_result: DataTypes.STRING
+    match_id: {type: DataTypes.STRING, allowNull: false},
+    user_id: {type: DataTypes.STRING, allowNull: false},
+    team_id: {type: DataTypes.STRING, allowNull: false},
+    match_result_id: {type: DataTypes.STRING, allowNull: false}
 });
 MatchParticipant.sync()
     .then(() => MatchParticipant.create({
@@ -123,13 +123,13 @@ MatchParticipant.sync()
             match_id: 'some_id',
             user_id: 'some_id',
             team_id: 'some_id',
-            match_result: 'some_id'
+            match_result_id: 'some_id'
         })
     )
 
 const MatchResult = sequelize.sequelize.define('MatchResult', {
     id: {type: DataTypes.STRING, primaryKey: true},
-    name: DataTypes.STRING
+    name: {type: DataTypes.STRING, allowNull: false}
 });
 MatchResult.sync()
     .then(() => MatchResult.create({
