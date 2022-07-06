@@ -9,13 +9,14 @@ class user {
 module.exports = {
     findUser: function (userId){
         for (let i in model.users) {
-            if (model.users[i].id === userId) {
+            if (model.users[i].id == userId) {
                 return model.users[i];
+                break;
             }
         }
     },
     getAllUserInfo: function (page, pageSize){
-        let countUsers = pageSize*page;
+        countUsers = pageSize*page;
         if(page <= 0 || pageSize <= 0){
             return ('Номер страницы и/или размер страницы должны быть положительными!')
         }
@@ -49,25 +50,9 @@ module.exports = {
         let indexId;
         if (id in model.users) {
             indexId = model.users.indexOf(id);
-            delete model.users[indexId];
+            delete model.users[id];
         }
+
         return 200;
-
-    },
-    editUser: function (userId, fname, sname){
-        let userIndex;
-
-        for (let i in model.users) {
-            if (model.users[i].id === userId) {
-                userIndex = i;
-                break;
-            }
-        }
-
-        model.users[userIndex].fname = fname;
-        model.users[userIndex].sname = sname;
-
-        return 400;
-
     }
 }
