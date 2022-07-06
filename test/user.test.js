@@ -2,7 +2,7 @@ const req = require('supertest');
 
 let app = require('../index.js').app
 
-it('should return user Info', function() {
+it('should return learners Info', function() {
     req(app)
     .post('/user/search')
     .expect({

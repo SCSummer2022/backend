@@ -4,7 +4,7 @@ let router = express.Router();
 let service = require('../service/user');
 
 let handler = async function (req, res) {
-    let usersInfo = await service.getAllUserInfo();
+    let usersInfo = await service.getAllLearnersInfo();
     res.json(usersInfo)
 }
 
