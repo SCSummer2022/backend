@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize/types');
 const sequelize = require('./db');
 
 const User = sequelize.sequelize.define('User', {
-    id: {type: DataTypes.STRING, primaryKey: true, allowNull: false, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
     role: {type: DataTypes.STRING, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
@@ -26,7 +26,7 @@ User.sync()
         })
     )
 const Role = sequelize.sequelize.define('Teams', {
-    id:{type: DataTypes.STRING, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         name: {type: DataTypes.STRING, allowNull: false}
     });
 Role.sync()
@@ -36,7 +36,7 @@ Role.sync()
     })
     )
 const Team = sequelize.sequelize.define('Teams', {
-    id:{type: DataTypes.STRING, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
 Team.sync()
@@ -46,7 +46,7 @@ Team.sync()
     })
 )
 const School = sequelize.sequelize.define('Teams', {
-    id:{type: DataTypes.STRING, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
 School.sync()
@@ -56,7 +56,7 @@ School.sync()
     })
 )
 const City = sequelize.sequelize.define('Teams', {
-    id:{type: DataTypes.STRING, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
 City.sync()
