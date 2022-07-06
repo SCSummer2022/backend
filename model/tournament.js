@@ -1,4 +1,4 @@
-module.exports = [{
+module.exports = {
     "tournaments": [
         {
             "id": 1,
@@ -12,4 +12,4 @@ module.exports = [{
             "id": 3,
             "tournamentName": "Турнир 3"
         }]
-}]
+}

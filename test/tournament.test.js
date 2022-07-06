@@ -1,17 +1,15 @@
-const request = require('supertest');
-var app = require('../index.js');
+const req = require('supertest');
+let app = require('../index.js');
 
 
-it('Delete tournament', function (done) {
-    request(app).get('/tournaments/delete').expect([
-        {
-            "id": 2,
-            "tournamentName": "Турнир 2"
-        },
-        {
-            "id": 3,
-            "tournamentName": "Турнир 3"
-        }
-    ]
-    ).end(done);
-});
+// it('Delete tournament', function (done) {
+//     request(app).delete('/tournament/2/del').expect("text").end(done);
+// });
+
+
+it('Search tournament', function (done) {
+    req(app).get('/tournament/2').expect({
+        "id": 2,
+        "tournamentName": "Турнир 2",
+    }).end(done);
+})
