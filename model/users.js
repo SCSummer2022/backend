@@ -25,7 +25,7 @@ User.sync()
             password: 'easypeasy'
         })
     )
-const Role = sequelize.sequelize.define('Teams', {
+const Role = sequelize.sequelize.define('Role', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
         name: {type: DataTypes.STRING, allowNull: false}
     });
@@ -35,7 +35,7 @@ Role.sync()
         name: 'some_name'
     })
     )
-const Team = sequelize.sequelize.define('Teams', {
+const Team = sequelize.sequelize.define('Team', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
@@ -45,7 +45,7 @@ Team.sync()
         name: 'some_name'
     })
 )
-const School = sequelize.sequelize.define('Teams', {
+const School = sequelize.sequelize.define('School', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
@@ -55,7 +55,7 @@ School.sync()
         name: 'some_name'
     })
 )
-const City = sequelize.sequelize.define('Teams', {
+const City = sequelize.sequelize.define('City', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
