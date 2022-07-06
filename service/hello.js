@@ -1,6 +1,8 @@
-let model = require('../model/hello');
+
+let tournament = require('../model/tournament');
 module.exports = {
-    getHelloModel: function () {
-        return model;
+    getHelloModel: async function () {
+        let result = await tournament.TournamentType.findAll();
+        return result.map(r => r.dataValues);
     }
 }

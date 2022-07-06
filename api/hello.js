@@ -3,8 +3,10 @@ let router = express.Router();
 
 let service = require('../service/hello');
 
-router.get('/', (req, res) => {
-    res.json(service.getHelloModel())
-})
+let handler = async function (req, res) => {
+    res.json( await service.getHelloModel())
+}
+
+router.get('/', handler)
 
 module.exports = router;
