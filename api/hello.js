@@ -3,7 +3,7 @@ let router = express.Router();
 
 let service = require('../service/hello');
 
-let handler = async function (req, res) => {
+let handler = async function (req, res) {
     res.json( await service.getHelloModel())
 }
 
