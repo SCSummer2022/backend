@@ -41,7 +41,7 @@ City.sync()
 const Tournament = sequelize.sequelize.define('Tournament', {
     id: {type: DataTypes.STRING, primaryKey: true},
     name: DataTypes.STRING,
-    tournament_type_id: DataTypes.STRING,
+    tournament_type_id: {type: DataTypes.STRING},
     sport_type : DataTypes.STRING,
     start_date : DataTypes.DATE,
     end_date : DataTypes.DATE,
@@ -115,7 +115,7 @@ const MatchParticipant = sequelize.sequelize.define('MatchParticipant', {
     match_id: DataTypes.STRING,
     user_id: DataTypes.STRING,
     team_id: DataTypes.STRING,
-    match_result_id: DataTypes.STRING
+    match_result: DataTypes.STRING
 });
 MatchParticipant.sync()
     .then(() => MatchParticipant.create({
@@ -123,7 +123,7 @@ MatchParticipant.sync()
             match_id: 'some_id',
             user_id: 'some_id',
             team_id: 'some_id',
-            match_result_id: 'some_id'
+            match_result: 'some_id'
         })
     )
 

@@ -1,6 +1,7 @@
 
 let tournament = require('../model/tournament');
 const {TournamentType} = require("../model/tournament");
+let users = require('../model/users');
 module.exports = {
     getHelloModel: async function () {
         let result = {};
@@ -14,6 +15,7 @@ module.exports = {
         result.Match = await tournament.Match.findAll();
         result.MatchParticipant = await tournament.MatchParticipant.findAll();
         result.MatchResult = await tournament.MatchResult.findAll();
+        //result.User = await users.User.findAll();
         return result;
     }
 }
