@@ -54,5 +54,20 @@ module.exports = {
         }
 
         return 200;
+    },
+    editUser: function (userId, fname, sname){
+        let userIndex;
+
+        for (let i in model.users) {
+            if (model.users[i].id === userId) {
+                userIndex = i;
+                break;
+            }
+        }
+
+        model.users[userIndex].fname = fname;
+        model.users[userIndex].sname = sname;
+
+        return model.users[userIndex];
     }
 }
