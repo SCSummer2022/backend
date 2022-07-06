@@ -15,18 +15,17 @@ const User = sequelize.sequelize.define('User', {
 
 User.sync()
     .then(() => User.create({
-        role: 'администратор',
-        last_name: 'Андреевич',
-        first_name: 'Павел',
-        second_name: 'Небойков',
-        birthday: new Date(2002, 6, 20),
-        phone_number: '546789',
-        email: 'neboi222@mail.ru',
-        password: 'easypeasy'
+            role: 'администратор',
+            last_name: 'Андреевич',
+            first_name: 'Павел',
+            second_name: 'Небойков',
+            birthday: new Date(2002, 6, 20),
+            phone_number: '546789',
+            email: 'neboi222@mail.ru',
+            password: 'easypeasy'
         })
     )
 
 
 module.exports = {
     User: User
-}
