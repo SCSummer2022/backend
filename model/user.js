@@ -1,14 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
 
-const User = sequelize.sequelize.define('User', {
+const Learner = sequelize.sequelize.define('Learner', {
     id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
-    role_id: {type: DataTypes.STRING,
-        allowNull: false,
-        references:{
-            model: Role,
-            key: id
-        }},
+    role_id: {type: DataTypes.STRING, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
@@ -18,9 +13,9 @@ const User = sequelize.sequelize.define('User', {
     password: {type: DataTypes.STRING, allowNull: false}    
 });
 
-User.sync()
-    .then(() => User.create({
-            role: 'администратор',
+Learner.sync()
+    .then(() => Learner.create({
+            role_id: 'администратор',
             last_name: 'Андреевич',
             first_name: 'Павел',
             second_name: 'Небойков',
@@ -62,7 +57,7 @@ School.sync()
 )
 
 module.exports = {
-    User: User,
+    Learner: Learner,
     Role: Role,
     Team: Team,
     School: School
