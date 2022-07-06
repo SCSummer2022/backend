@@ -1,13 +1,13 @@
 const sequelize = require('./db');
 
-const TournamentType = sequelize.sequelize.define('TournamentType', {
+const User = sequelize.sequelize.define('User', {
     id: {type: 'STRING', primaryKey: true},
     name: 'STRING',
     code: 'STRING'
 });
 
-TournamentType.sync()
-    .then(() => TournamentType.create({
+User.sync()
+    .then(() => User.create({
             id: 'some_id',
             name: 'some_name',
             code: 'some_code'
@@ -16,5 +16,5 @@ TournamentType.sync()
 
 
 module.exports = {
-    TournamentType: TournamentType
+    User: User
 }
