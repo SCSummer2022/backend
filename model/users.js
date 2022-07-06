@@ -3,7 +3,12 @@ const sequelize = require('./db');
 
 const User = sequelize.sequelize.define('User', {
     id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
-    role: {type: DataTypes.STRING, allowNull: false},
+    role_id: {type: DataTypes.STRING,
+        allowNull: false,
+        references:{
+            model: Role,
+            key: id
+        }},
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
