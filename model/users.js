@@ -60,16 +60,10 @@ School.sync()
         name: 'some_name'
     })
 )
-const City = sequelize.sequelize.define('City', {
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING, allowNull: false}
-    });
-City.sync()
-    .then(() => City.create({
-        id: 'some_id',
-        name: 'some_name'
-    })
-)
+
 module.exports = {
-    User: User
+    User: User,
+    Role: Role,
+    Team: Team,
+    School: School
 }
