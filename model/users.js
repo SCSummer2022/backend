@@ -1,16 +1,16 @@
+const { DataTypes } = require('sequelize/types');
 const sequelize = require('./db');
 
 const User = sequelize.sequelize.define('User', {
-    id: {type: 'STRING', primaryKey: true, allowNull: false, autoIncrement: true},
-    role: {type: 'STRING', allowNull: false},
-    last_name: {type: 'STRING', allowNull: false},
-    first_name: {type: 'STRING', allowNull: false},
-    second_name: {type: 'STRING', allowNull: false},
-    birthday: {type: 'DATE', allowNull: false},
-    phone_number: {type: 'INTEGER'},
-    email: {type: 'STRING', allowNull: false},
-    password: {type: 'STRING', allowNull: false}
-
+    id: {type: DataTypes.STRING, primaryKey: true, allowNull: false, autoIncrement: true},
+    role: {type: DataTypes.STRING, allowNull: false},
+    last_name: {type: DataTypes.STRING, allowNull: false},
+    first_name: {type: DataTypes.STRING, allowNull: false},
+    second_name: {type: DataTypes.STRING, allowNull: false},
+    birthday: {type: DataTypes.DATEONLY, allowNull: false},
+    phone_number: {type: DataTypes.INTEGER},
+    email: {type: DataTypes.STRING, allowNull: false},
+    password: {type: DataTypes.STRING, allowNull: false}    
 });
 
 User.sync()
@@ -35,12 +35,12 @@ Role.sync()
         name: 'some_name'
     })
     )
-const Teams = sequelize.sequelize.define('Teams', {
+const Team = sequelize.sequelize.define('Teams', {
     id:{type: DataTypes.STRING, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
     });
-Teams.sync()
-    .then(() => Teams.create({
+Team.sync()
+    .then(() => Team.create({
         id: 'some_id',
         name: 'some_name'
     })
