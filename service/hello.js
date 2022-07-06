@@ -10,6 +10,10 @@ module.exports = {
         result.City = await tournament.City.findAll();
         result.Tournament = await tournament.Tournament.findAll();
         result.CityParticipant = await tournament.CityParticipant.findAll();
+        result.TournamentParticipant = await tournament.TournamentParticipant.findAll();
+        result.Match = await tournament.Match.findAll();
+        result.MatchParticipant = await tournament.MatchParticipant.findAll();
+        result.MatchResult = await tournament.MatchResult.findAll();
         return result;
     }
 }
