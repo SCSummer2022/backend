@@ -8,10 +8,6 @@ const Role = sequelize.sequelize.define('Role', {
 
 const Learner = sequelize.sequelize.define('Learner', {
     id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
-    role_id: {type: DataTypes.STRING, 
-                    allowNull: false,
-                references: {model: Role, key: 'id'}
-            },
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
@@ -27,7 +23,6 @@ const Learner = sequelize.sequelize.define('Learner', {
 
 const Teacher = sequelize.sequelize.define('Teacher', {
     id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
-    role_id: {type: DataTypes.STRING, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
@@ -52,8 +47,8 @@ const School = sequelize.sequelize.define('School', {
     name: {type: DataTypes.STRING, allowNull: false}
     });
 
-Role.hasMany(Teacher)
-Role.hasMany(Learner)
+Role.hasMany(Teacher, {foreignKey: {name: 'role_id'}})
+Role.hasMany(Learner, {foreignKey: {name: 'role_id'}})
 
 
 module.exports = {
