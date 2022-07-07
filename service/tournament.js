@@ -13,23 +13,15 @@ module.exports = {
 
     //Удаление
     tournamentDel: function (tournamentIdForDel) {
-        // let arrToDelete = [tournamentIdForDel]
-        for (let tournament of modelTournament["tournaments"]) {
-            // for (let idx = tournament.length - 1; idx >= 0; idx--) {
-            //     if (arrToDelete.includes(tournament[idx].id)) {
-            //         tournament.splice(idx, 1);
-            //     }
-            // }
-            if (tournamentIdForDel === tournament.id) {
-                tournament = JSON.parse(tournament)
-                let i = tournament.getKeyByValue(tournamentIdForDel);
-
-                return i;
-                // delete tournament[i];
+        let arrToDelete = [tournamentIdForDel]
+        for (let idx = modelTournament["tournaments"].length - 1; idx >= 0; idx--) {
+            if (arrToDelete.includes(modelTournament["tournaments"][idx]["id"])) {
+                delete modelTournament["tournaments"][tournamentIdForDel - 1];
+                return 200;
+                break;
             }
-            // return tournament;
-
         }
+
     },
 
     //Поиск конкретного турнира
@@ -43,25 +35,47 @@ module.exports = {
 
     //Добавление турнира
     tournamentAdd: function (tournamentID, tournamentName) {
-        // return { id: 2, tournamentName: 'Турнир 2' };
-
         let newTour = new tournament(tournamentID, tournamentName);
-        for (let tournament of modelTournament["tournaments"]) {
-            //return newTour;
-            tournament.push(newTour);
-            return 200;
-        };
-    }
 
-}
+        modelTournament["tournaments"].push(newTour);
+        return modelTournament["tournaments"][tournamentID - 1];
+
+    },
 
     //Редактирование турнира
-    // tournamentEdit: function (tournamentID, newTournamentName) {
-    //     return modelTournament;
-    // },
+    tournamentEdit: function (tournamentID, newTournamentName) {
+        let arrToEdit = [tournamentID];
+        for (let idx = modelTournament["tournaments"].length - 1; idx >= 0; idx--) {
+            if (arrToEdit.includes(modelTournament["tournaments"][idx]["id"])) {
+                modelTournament["tournaments"][tournamentID - 1]["tournamentName"] = newTournamentName;
+                // return 200;
+                return modelTournament;
+                break;
+            }
+        }
+    },
 
     //Поиск постранично
-    // getListOfTournaments: function (page, size) {
-    //     return modelTournament;
-    // },
-// }
+    getListOfTournaments: function (page, size) {
+
+        let index, offSet
+
+        if (page == 1 || page <= 0) {
+            index = 0;
+            offSet = size;
+        }
+
+        else if (page > modelTournament["tournaments"].length) {
+            index = page - 1;
+            offSet = modelTournament["tournaments"].length;
+        }
+
+        else {
+            index = page * size - size;
+            offSet = index + size;
+        }
+        const slicedItems = modelTournament["tournaments"].slice(index, offSet);
+
+        return slicedItems;
+    }
+}

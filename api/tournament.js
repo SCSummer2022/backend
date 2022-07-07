@@ -4,9 +4,14 @@ let router = express.Router();
 let service = require('../service/tournament');
 
 //Поиск постранично
-// router.post('/search', (req, res) => {
-//     res.json(service.getListOfTournaments(1, 10));
-// });
+router.post('/search', (req, res) => {
+    // let page = Number(req.params.page);
+    // let size = Number(req.params.size);
+    let page = 1;
+    let size = 3;
+    let search = service.getListOfTournaments(page, size);
+    res.json(search);
+});
 
 //Удаление турнира
 router.delete('/:id/del', (req, res) => {
