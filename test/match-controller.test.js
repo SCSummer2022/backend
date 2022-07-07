@@ -11,7 +11,6 @@ app.delete('/tournament/:tournament_id/match/:match_id', require('../api/match')
 
 it('Поиск матчей (POST)', async function () {
     let tournamentId = 4
-    let matchId = 3
     let body = {
         page: 0,
         pageSize: 2

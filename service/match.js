@@ -16,6 +16,7 @@ async function findMatches(tournamentId, page, pageSize) {
     for (let currIndex = startIndex; currIndex < indexAfter; currIndex++) {
         TargetMatches.push(AllMatches[currIndex])
     }
+    console.log(TargetMatches)
     return TargetMatches
 }
 
