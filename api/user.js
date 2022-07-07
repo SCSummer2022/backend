@@ -10,9 +10,4 @@ let handler = async function (req, res) {
 
 router.post('/user/search', handler)
 
-let handler1 = async function (req, res) {
-    let newUser = await service.addNewUser();
-    res.json(newUser)
-}
-
 module.exports = router;
