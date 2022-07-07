@@ -46,13 +46,13 @@ const Tournament = sequelize.sequelize.define('Tournament', {
     start_date : {type: DataTypes.DATE, allowNull: false},
     end_date : {type: DataTypes.DATE, allowNull: false},
     school_or_city : {type: DataTypes.BOOLEAN, allowNull: false},
-    city : {type: DataTypes.STRING, allowNull: false},
-    participants_min : {type: DataTypes.INTEGER, allowNull: false},
-    participants_max : {type: DataTypes.INTEGER, allowNull: false},
-    age_min : {type: DataTypes.INTEGER, allowNull: false},
-    age_max : {type: DataTypes.INTEGER, allowNull: false},
-    class_min : {type: DataTypes.INTEGER, allowNull: false},
-    class_max : {type: DataTypes.INTEGER, allowNull: false},
+    city : {type: DataTypes.STRING},
+    participants_min : {type: DataTypes.INTEGER},
+    participants_max : {type: DataTypes.INTEGER},
+    age_min : {type: DataTypes.INTEGER},
+    age_max : {type: DataTypes.INTEGER},
+    class_min : {type: DataTypes.INTEGER},
+    class_max : {type: DataTypes.INTEGER},
     team_size : {type: DataTypes.INTEGER, allowNull: false}
 });
 Tournament.sync()
@@ -113,9 +113,9 @@ Match.sync()
 const MatchParticipant = sequelize.sequelize.define('MatchParticipant', {
     id: {type: DataTypes.STRING, primaryKey: true},
     match_id: {type: DataTypes.STRING, allowNull: false},
-    user_id: {type: DataTypes.STRING, allowNull: false},
-    team_id: {type: DataTypes.STRING, allowNull: false},
-    match_result: {type: DataTypes.STRING, allowNull: false}
+    user_id: {type: DataTypes.STRING},
+    team_id: {type: DataTypes.STRING},
+    match_result: {type: DataTypes.STRING}
 });
 MatchParticipant.sync()
     .then(() => MatchParticipant.create({
