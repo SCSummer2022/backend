@@ -19,7 +19,8 @@ it('Поиск матчей (POST)', async function () {
         .post('/tournament/' + tournamentId + '/match/search')
         .send(body);
 
-
+    let targetMatches = await service.findMatches(tournamentId, body.page, body.pageSize)
+    assert.notStrictEqual(targetMatches, response.body)
 });
 
 it('Обновление матча (PUT)', async function () {
