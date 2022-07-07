@@ -1,12 +1,12 @@
 let tournament = require('../model/tournament');
-//const sequelize = require('../model/db');
+const {TournamentType,SportType,City,Tournament,CityParticipant,TournamentParticipant,Match,MatchParticipant,MatchResult} = require('../model/tournament');
 
 module.exports = {
     getTournaments: async function () {
         console.log('getTournaments')
+        await require('../model/tournament-data').init();
         //await tournament.Tournament.sync()
-        //await sequelize.sequelize.sync()
-        let Tournaments = await tournament.Tournament.findAll()
+        let Tournaments = await Tournament.findAll()
         console.log('Tournaments = ' + Tournaments)
         return Tournaments;
     }
