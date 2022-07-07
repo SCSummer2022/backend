@@ -4,7 +4,7 @@ const express = require("express")
 const app = express()
 let service = require('../service/match');
 
-app.put('/tournament/:tournament_id/match/:match_id', require('../api/match'))
+app.put('/tournament/:tournament_id/match/*', require('../api/match'))
 
 it('PUT', async function () {
     let tournamentId = 4
@@ -16,9 +16,7 @@ it('PUT', async function () {
         .put('/tournament/' + tournamentId + '/match/' + matchId + '/')
         .send(matchChanges);
 
-    console.log('before request2')
     let targetMatch = await service.findMatch(tournamentId, matchId)
-    await console.log('after request ' + JSON.stringify(targetMatch))
     for (let key in matchChanges) {
         console.log(targetMatch[key] + ' vs ' + matchChanges[key])
         assert.equal(targetMatch[key], matchChanges[key])

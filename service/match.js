@@ -17,9 +17,9 @@ async function findMatch(tournamentId, matchId) {
 async function updateMatch(tournamentId, matchId, matchChanges) {
     await initData()
 
-    /*await Match.update(matchChanges,{
+    await Match.update(matchChanges,{
         where: {tournament_id: tournamentId, id: matchId}
-    })*/
+    })
 }
 
 module.exports = {
