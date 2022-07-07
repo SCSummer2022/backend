@@ -2,7 +2,7 @@ const req = require('supertest');
 
 let app = require('../index.js').app
 
-it('should return user Info', function() {
+it('should return user Info', function(done) {
     req(app)
     .post('/user/search')
     .expect({
@@ -33,5 +33,11 @@ it('should return user Info', function() {
         school: '1',
         access: true
     })
-    .end()
+    .end(done)
+})
+it('should return user Info', function(done) {
+    req(app)
+    .post('/user/search')
+    .expect("поехали")
+    .end(done)
 })

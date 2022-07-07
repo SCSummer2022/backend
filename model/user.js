@@ -1,9 +1,25 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
 
+const Role = sequelize.sequelize.define('Role', {
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+});
+Role.sync()
+    .then(() => Role.create({
+        name: 'Ученик'
+    },
+    Role.create({
+        name: 'Учитель'
+    })
+    ))
+
 const Learner = sequelize.sequelize.define('Learner', {
     id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
-    role_id: {type: DataTypes.STRING, allowNull: false},
+    role_id: {type: DataTypes.STRING, 
+                    allowNull: false,
+                references: {model: Role, key: 'id'}
+            },
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
@@ -19,7 +35,7 @@ const Learner = sequelize.sequelize.define('Learner', {
 
 Learner.sync()
     .then(() => Learner.create({
-            role_id: 'Ученик',
+            role_id: 1,
             last_name: 'Андреевич',
             first_name: 'Павел',
             second_name: 'Небойков',
@@ -65,16 +81,6 @@ Teacher.sync()
         })
     )
 
-const Role = sequelize.sequelize.define('Role', {
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-        name: {type: DataTypes.STRING, allowNull: false}
-    });
-Role.sync()
-    .then(() => Role.create({
-        id: 'some_id',
-        name: 'some_name'
-    })
-    )
 const Team = sequelize.sequelize.define('Team', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}

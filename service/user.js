@@ -5,7 +5,7 @@ let teacher = require('../model/user');
 const {Teacher} = require("../model/user");
 
 module.exports = {
-    getUsersInfosInfo: async function () {
+    getUsersInfo: async function () {
         let result = {}
         result.id = result.learner.id.findAll.findAll()
         result.role_id = await learner.role_id.findAll()
@@ -33,5 +33,8 @@ module.exports = {
         result.school = await teacher.school.findAll();
         result.access = await teacher.access.findAll();
         return result;
+    },
+    addNewUser: async function () {
+
     }
 }
