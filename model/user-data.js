@@ -13,7 +13,7 @@ module.exports = {
         await Role.sync()
         await Role.create({name: 'Ученик'})
         await Role.create({name: 'Учитель'})
-
+        
         await Learner.sync();
         await Learner.create({
             role_id: 1,
@@ -32,7 +32,7 @@ module.exports = {
 
         await Teacher.sync();
         await Teacher.create({
-            role_id: 1,
+            role_id: 2,
             last_name: 'Самсонович',
             first_name: 'Секулай',
             second_name: 'Ботвинюк',

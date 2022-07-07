@@ -56,10 +56,10 @@ const Team = sequelize.sequelize.define('Team', {
 /////////////////////
 //Role, Teacher
 Role.hasMany(Teacher, {foreignKey: {name: 'role_id'}})
-Teacher.belongsTo(Role)
+Teacher.belongsTo(Role, {foreignKey: {name: 'role_id'}})
 //Role, Learner
 Role.hasMany(Learner, {foreignKey: {name: 'role_id'}})
-Learner.belongsTo(Role)
+Learner.belongsTo(Role, {foreignKey: {name: 'role_id'}})
 //Learner, Match -> MatchParticipant
 Learner.belongsToMany(tournament.Match, {through: tournament.MatchParticipant, sourceKey: 'id', targetKey: 'id'})
 tournament.Match.belongsToMany(Learner, {through: tournament.MatchParticipant, sourceKey: 'id', targetKey: 'id'})
