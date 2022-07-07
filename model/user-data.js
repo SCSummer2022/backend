@@ -14,9 +14,6 @@ module.exports = {
         await Role.sync()
         await Role.create({name: 'Ученик'})
         await Role.create({name: 'Учитель'})
-<<<<<<< HEAD
-        
-=======
 
         await Team.sync()
             .then(() => Team.create({
@@ -32,7 +29,6 @@ module.exports = {
         await School.create({name: 'Москва'})
         await School.create({name: 'Новосибирск'})
 
->>>>>>> 6d6500a612f045c1da5aa5f5c9b0fdfc8803dd8d
         await Learner.sync();
         await Learner.create({
             role_id: 1,

@@ -10,5 +10,9 @@ module.exports = {
     getTeachersInfo: async function () {
         await require('../model/user-data').init();
         return Teacher.findAll();
+    },
+    createNewLearner: async function (newLearner){
+        await Learner.create(newLearner);
+        return await Learner.findByPk(2)
     }
 }
