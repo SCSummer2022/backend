@@ -1,4 +1,3 @@
-let tournament = require('../model/tournament');
 const {TournamentType,SportType,City,Tournament,CityParticipant,TournamentParticipant,Match,MatchParticipant,MatchResult} = require('../model/tournament');
 
 module.exports = {

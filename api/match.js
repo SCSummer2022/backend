@@ -13,7 +13,7 @@ let handler = async function (req, res) {
     let match_id = Number(req.params.match_id)
     console.log('match_id: '+ match_id)
 
-    let ab = await service.getTournaments()//tournament.Tournament.findAll() //
+    let ab = await service.getTournaments()
     console.log('res == ' + ab[0].id)
 
     res.send("")
