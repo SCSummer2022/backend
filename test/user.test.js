@@ -5,11 +5,21 @@ const app = express()
 app.use('/', require('../api/user'))
 
 
+
 describe("users tests", () => {
     it('should return learners Info', async function () {
-        let response = await request(app)
-            .post('/learners/search');
+        let response = await request(app).post('/learners/search');
 
         assert.equal(response.body[0].id, 1)
     });
 })
+
+describe("users tests", () => {
+    it('should return teachers Info', async function () {
+        let response = await request(app).post('/teachers/search');
+
+        assert.equal(response.body[0].id, 1)
+    });
+})
+
+
