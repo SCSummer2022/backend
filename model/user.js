@@ -15,7 +15,7 @@ const School = sequelize.sequelize.define('School', {
 
 const Learner = sequelize.sequelize.define('Learner', {
     id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
-    role_id: {type: DataTypes.STRING, allowNull: false},
+    role_id: {type: DataTypes.INTEGER, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
@@ -23,7 +23,7 @@ const Learner = sequelize.sequelize.define('Learner', {
     phone_number: {type: DataTypes.INTEGER},
     email: {type: DataTypes.STRING, allowNull: false},
     password: {type: DataTypes.STRING, allowNull: false},
-    city: {type: DataTypes.STRING, allowNull: false},
+    city: {type: DataTypes.INTEGER, allowNull: false},
     school: {type: DataTypes.INTEGER, allowNull: false},
     class: {type: DataTypes.INTEGER, allowNull: false},
     fav_sport_types: {type: DataTypes.STRING}
@@ -39,8 +39,8 @@ const Teacher = sequelize.sequelize.define('Teacher', {
     phone_number: {type: DataTypes.INTEGER},
     email: {type: DataTypes.STRING, allowNull: false},
     password: {type: DataTypes.STRING, allowNull: false},
-    city: {type: DataTypes.STRING, allowNull: false},
-    school: {type: DataTypes.STRING, allowNull: false},
+    city: {type: DataTypes.INTEGER, allowNull: false},
+    school: {type: DataTypes.INTEGER, allowNull: false},
     class: {type: DataTypes.INTEGER},
     access: {type: DataTypes.BOOLEAN, allowNull: false}
 });
@@ -84,17 +84,20 @@ tournament.Tournament.belongsTo(tournament.TournamentType)
 //Tournament, SportType
 tournament.SportType.hasMany(tournament.Tournament, {foreignKey: {name: 'sport_id'}})
 tournament.Tournament.belongsTo(tournament.SportType)
-
-//NOT WORKING!!!
-/*//Learner, School
+//Learner, School
 School.hasMany(Learner, {foreignKey: {name: 'school'}})
 Learner.belongsTo(School)
 //Learner, City
 tournament.City.hasMany(Learner, {foreignKey: {name: 'city'}})
 Learner.belongsTo(tournament.City)
+
+
+//NOT WORKING!!!
+/*
 //Teacher, City
 tournament.City.hasMany(Teacher, {foreignKey: {name: 'city'}})
-Teacher.belongsTo(tournament.City)*/
+Teacher.belongsTo(tournament.City)
+*/
 
 //НЕ СДЕЛАНЫ
 //Match, result_type
