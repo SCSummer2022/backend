@@ -4,9 +4,18 @@ async function initData() {
     await require('../model/tournament-data').init();
 }
 
+function getModelData(model) {
+    model = model.dataValues
+    delete model.createdAt
+    delete model.updatedAt
+    return model
+}
+
 async function findMatches(tournamentId, page, pageSize) {
     await initData()
-
+    if (page < 0 || pageSize < 1) {
+        return
+    }
     let AllMatches = await Match.findAll({
         where: {tournament_id: tournamentId}
     })
@@ -14,8 +23,9 @@ async function findMatches(tournamentId, page, pageSize) {
     let indexAfter = Math.min(startIndex+pageSize, AllMatches.length)
     let TargetMatches = []
     for (let currIndex = startIndex; currIndex < indexAfter; currIndex++) {
-        TargetMatches.push(AllMatches[currIndex])
+        TargetMatches.push(getModelData(AllMatches[currIndex]))
     }
+    console.log('Matches:')
     console.log(TargetMatches)
     return TargetMatches
 }
@@ -26,8 +36,9 @@ async function findMatch(tournamentId, matchId) {
     let TargetMatch = await Match.findOne({
         where: {tournament_id: tournamentId, id: matchId}
     })
-    console.log('Match = ' + JSON.stringify(TargetMatch))
-    return TargetMatch
+    //console.log('Match:')
+    //console.log(getModelData(TargetMatch))
+    return getModelData(TargetMatch)
 }
 
 async function addMatch(tournamentId, matchData) {
