@@ -10,16 +10,19 @@ it('PUT', function (done) {
     let tournamentId = 4
     let matchId = 3
     let matchChanges = {
-        "name" : "Матч 2 турнира 1 новое имя 2"
+        "name" : "Матч 2 турнира 1 новое имя 3"
     }
     request(app)
         .put('/tournament/' + tournamentId + '/match/' + matchId + '/')
         .send(matchChanges)
         .expect(async function (res) {
-            console.log('before request')
-            let TargetMatch = await service.findMatch(tournamentId, matchId)
-            await console.log('after request')
-
+            console.log('before request2')
+            let targetMatch = await service.findMatch(tournamentId, matchId)
+            await console.log('after request '+ JSON.stringify(targetMatch))
+            for (let key in matchChanges) {
+                console.log(targetMatch[key] + ' vs ' + matchChanges[key])
+                assert.equal(targetMatch[key], matchChanges[key])
+            }
         })
         .end(done);
 });
