@@ -5,9 +5,11 @@ async function initData() {
 }
 
 function getModelData(model) {
-    model = model.dataValues
-    delete model.createdAt
-    delete model.updatedAt
+    if (model) {
+        model = model.dataValues
+        delete model.createdAt
+        delete model.updatedAt
+    }
     return model
 }
 
@@ -25,8 +27,6 @@ async function findMatches(tournamentId, page, pageSize) {
     for (let currIndex = startIndex; currIndex < indexAfter; currIndex++) {
         TargetMatches.push(getModelData(AllMatches[currIndex]))
     }
-    console.log('Matches:')
-    console.log(TargetMatches)
     return TargetMatches
 }
 
@@ -36,8 +36,6 @@ async function findMatch(tournamentId, matchId) {
     let TargetMatch = await Match.findOne({
         where: {tournament_id: tournamentId, id: matchId}
     })
-    //console.log('Match:')
-    //console.log(getModelData(TargetMatch))
     return getModelData(TargetMatch)
 }
 

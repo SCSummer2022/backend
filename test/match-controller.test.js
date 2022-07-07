@@ -4,10 +4,10 @@ const express = require("express")
 const app = express()
 let service = require('../service/match');
 
-app.post('/tournament/:tournament_id/match/*', require('../api/match'))
-app.post('/tournament/:tournament_id/match', require('../api/match'))
-app.put('/tournament/:tournament_id/match/*', require('../api/match'))
-app.delete('/tournament/:tournament_id/match/:match_id', require('../api/match'))
+app.post('/tournament/:tournamentId/match/:matchId', require('../api/match'))
+app.post('/tournament/:tournamentId/match', require('../api/match'))
+app.put('/tournament/:tournamentId/match/:matchId', require('../api/match'))
+app.delete('/tournament/:tournamentId/match/:matchId', require('../api/match'))
 
 
 it('Поиск матчей (POST)', async function () {
@@ -26,12 +26,10 @@ it('Поиск матчей (POST)', async function () {
 
 it('Добаление матча (POST)', async function () {
     let tournamentId = 10
-
     let matchData = {
         matchId: '14',
         matchName: 'Добавленный матч'
     }
-
     let response = await request(app)
         .post('/tournament/' + tournamentId + '/match').
         send(matchData);
@@ -51,7 +49,6 @@ it('Обновление матча (PUT)', async function () {
 
     let targetMatch = await service.findMatch(tournamentId, matchId)
     for (let key in matchChanges) {
-        console.log(targetMatch[key] + ' vs ' + matchChanges[key])
         assert.equal(targetMatch[key], matchChanges[key])
     }
 });
@@ -59,11 +56,9 @@ it('Обновление матча (PUT)', async function () {
 it('Удаление матча (DELETE)', async function () {
     let tournamentId = 4
     let matchId = 3
-
     let response = await request(app)
         .delete('/tournament/' + tournamentId + '/match/' + matchId)
         .send()
 
     assert.equal(await service.findMatch(tournamentId, matchId), null)
-
 });
