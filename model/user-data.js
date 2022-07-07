@@ -15,11 +15,7 @@ module.exports = {
 
         await Learner.sync()
             .then(() => Learner.create({
-                    role_id: Learner.getsRole({
-                        where: {
-                            id: 1
-                        }
-                    }),
+                    role_id: 0,
                     last_name: 'Андреевич',
                     first_name: 'Павел',
                     second_name: 'Небойков',
@@ -36,6 +32,7 @@ module.exports = {
 
         await Teacher.sync()
             .then(() => Teacher.create({
+                    role_id: 1,
                     last_name: 'Самсонович',
                     first_name: 'Секулай',
                     second_name: 'Ботвинюк',

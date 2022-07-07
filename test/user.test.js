@@ -2,11 +2,11 @@ const req = require('supertest');
 
 let app = require('../index.js').app
 
-it('should return user Info', function(done) {
+it('should return learners Info', function(done) {
     req(app)
-    .post('/user/search')
+    .post('/learners/search')
     .expect({
-        id: 1,
+        id: 0,
         role_id: 'Ученик',
         last_name: 'Андреевич',
         first_name: 'Павел',
@@ -21,9 +21,23 @@ it('should return user Info', function(done) {
     })
     .end(done)
 })
-it('should return user Info', function(done) {
+
+it('should return teachers Info', function(done) {
     req(app)
-    .post('/user/search')
-    .expect("поехали")
-    .end(done)
+        .post('/teachers/search')
+        .expect({
+            role_id: 1,
+            last_name: 'Самсонович',
+            first_name: 'Секулай',
+            second_name: 'Ботвинюк',
+            birthday: new Date(1977, 3, 15),
+            phone_number: '+73748378900',
+            email: 'ssbot@mail.ru',
+            password: 'ksteach93#',
+            city: 'Антоновка',
+            school: '1',
+            access: true
+
+        })
+        .end(done)
 })
