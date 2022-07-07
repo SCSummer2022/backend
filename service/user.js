@@ -6,9 +6,6 @@ module.exports = {
         await require('../model/user-data').init();
         return Learner.findAll();
     },
-    /*addNewUser: async function () {
-
-    },*/
 
     getTeachersInfo: async function () {
         await require('../model/user-data').init();
