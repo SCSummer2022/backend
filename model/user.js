@@ -95,6 +95,8 @@ School.sync()
         name: 'some_name'
     })
 )
+Role.hasMany(Teacher)
+Role.hasMany(Learner)
 
 module.exports = {
     Learner: Learner,
