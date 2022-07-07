@@ -58,7 +58,6 @@ it('Удаление матча (DELETE)', async function () {
     let matchId = 3
     let response = await request(app)
         .delete('/tournament/' + tournamentId + '/match/' + matchId)
-        .send()
 
     assert.equal(await service.findMatch(tournamentId, matchId), null)
 });
