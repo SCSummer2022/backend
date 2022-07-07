@@ -15,11 +15,9 @@ module.exports = {
 
     //Поиск конкретного турнира
     tournamentSearch: function (tournamentID) {
-        let i = 1;
-        for (i in modelTournament["tournaments"]) {
-            if (modelTournament["tournaments"][i - 1].id == tournamentID) {
-                return modelTournament["tournaments"][i];
-                break;
+        for (let tournament of modelTournament["tournaments"]) {
+            if (tournament.id === tournamentID) {
+                return tournament;
             }
         }
     },

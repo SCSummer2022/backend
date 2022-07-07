@@ -21,8 +21,8 @@ let service = require('../service/tournament');
 // });
 
 //Поиск конкретного турнира
-router.get('/tournament/:id', (req, res) => {
-    let tournamentID = req.params.id;
+router.get('/:id', (req, res) => {
+    let tournamentID = Number(req.params.id);
     let search = service.tournamentSearch(tournamentID);
     res.json(search);
 });
