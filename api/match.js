@@ -13,4 +13,11 @@ router.put('/tournament/:tournamentId/match/:matchId', async function (req, res)
     res.send()
 })
 
+router.delete('/tournament/:tournamentId/match/:matchId', async function (req, res){
+    let tournamentId = Number(req.params.tournamentId)
+    let matchId = Number(req.params.matchId)
+    await service.deleteMatch(tournamentId, matchId)
+    res.send()
+})
+
 module.exports = router;

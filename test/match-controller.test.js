@@ -5,6 +5,7 @@ const app = express()
 let service = require('../service/match');
 
 app.put('/tournament/:tournament_id/match/:match_id', require('../api/match'))
+app.delete('/tournament/:tournament_id/match/:match_id', require('../api/match'))
 
 it('PUT', async function () {
     let tournamentId = 4
@@ -23,4 +24,15 @@ it('PUT', async function () {
         console.log(targetMatch[key] + ' vs ' + matchChanges[key])
         assert.equal(targetMatch[key], matchChanges[key])
     }
+});
+
+it('DELETE', async function () {
+    let tournamentId = 4
+    let matchId = 3
+
+    let response = await request(app)
+        .delete('/tournament/' + tournamentId + '/match/' + matchId)
+        .send()
+
+    let DeletedMatch = await service.findMatch(tournamentId, matchId)
 });

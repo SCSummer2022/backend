@@ -17,12 +17,21 @@ async function findMatch(tournamentId, matchId) {
 async function updateMatch(tournamentId, matchId, matchChanges) {
     await initData()
 
-    /*await Match.update(matchChanges,{
+    await Match.update(matchChanges,{
         where: {tournament_id: tournamentId, id: matchId}
-    })*/
+    })
+}
+
+async function deleteMatch(tournamentId, matchId) {
+    await initData()
+
+    await Match.destroy({
+        where: {tournament_id: tournamentId, id: matchId}
+    })
 }
 
 module.exports = {
     findMatch: findMatch,
-    updateMatch: updateMatch
+    updateMatch: updateMatch,
+    deleteMatch: deleteMatch
 }
