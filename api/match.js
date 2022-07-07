@@ -9,6 +9,12 @@ router.post('/tournament/:tournamentId/match/search', async function (req, res) 
     res.send(await service.findMatches(tournamentId, req.body.page, req.body.pageSize))
 })
 
+router.post('/tournament/:tournamentId/match', async function (req, res) {
+    let tournamentId = Number(req.params.tournamentId)
+    await service.addMatch(tournamentId, req.body)
+    res.send()
+})
+
 router.put('/tournament/:tournamentId/match/:matchId', async function (req, res) {
     let tournamentId = Number(req.params.tournamentId)
     let matchId = Number(req.params.matchId)

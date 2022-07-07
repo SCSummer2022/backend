@@ -30,6 +30,16 @@ async function findMatch(tournamentId, matchId) {
     return TargetMatch
 }
 
+async function addMatch(tournamentId, matchData) {
+    await initData()
+
+    await Match.create({
+        id: matchData.matchId,
+        tournament_id: tournamentId,
+        name: matchData.matchName
+    })
+}
+
 async function updateMatch(tournamentId, matchId, matchChanges) {
     await initData()
 
@@ -49,6 +59,7 @@ async function deleteMatch(tournamentId, matchId) {
 module.exports = {
     findMatches: findMatches,
     findMatch: findMatch,
+    addMatch: addMatch,
     updateMatch: updateMatch,
     deleteMatch: deleteMatch
 }

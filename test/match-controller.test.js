@@ -5,6 +5,7 @@ const app = express()
 let service = require('../service/match');
 
 app.post('/tournament/:tournament_id/match/*', require('../api/match'))
+app.post('/tournament/:tournament_id/match', require('../api/match'))
 app.put('/tournament/:tournament_id/match/*', require('../api/match'))
 app.delete('/tournament/:tournament_id/match/:match_id', require('../api/match'))
 
@@ -18,8 +19,21 @@ it('Поиск матчей (POST)', async function () {
     let response = await request(app)
         .post('/tournament/' + tournamentId + '/match/search')
         .send(body);
+});
 
+it('Добаление матча (POST)', async function () {
+    let tournamentId = 10
 
+    let matchData = {
+        matchId: '14',
+        matchName: 'Добавленный матч'
+    }
+
+    let response = await request(app)
+        .post('/tournament/' + tournamentId + '/match').
+        send(matchData);
+
+    assert.notEqual(await service.findMatch(tournamentId, matchData.matchId), null)
 });
 
 it('Обновление матча (PUT)', async function () {
@@ -39,7 +53,7 @@ it('Обновление матча (PUT)', async function () {
     }
 });
 
-it('DELETE', async function () {
+it('Удаление матча (DELETE)', async function () {
     let tournamentId = 4
     let matchId = 3
 
@@ -47,5 +61,6 @@ it('DELETE', async function () {
         .delete('/tournament/' + tournamentId + '/match/' + matchId)
         .send()
 
-    let DeletedMatch = await service.findMatch(tournamentId, matchId)
+    assert.equal(await service.findMatch(tournamentId, matchId), null)
+
 });
