@@ -28,13 +28,12 @@ SportType.sync()
     )
 
 const City = sequelize.sequelize.define('City', {
-    id: {type: DataTypes.STRING, primaryKey: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 });
 City.sync()
     .then(() => City.create({
-            id: 'some_id',
-            name: 'some_name'
+            name: 'Санкт-Петербург'
         })
     )
 
