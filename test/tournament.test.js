@@ -1,7 +1,7 @@
 const req = require('supertest');
 let app = require('../index.js');
 
-//Работает
+
 it('Search tournament', function (done) {
     req(app).get('/tournament/2').expect({
         "id": 2,
@@ -9,12 +9,12 @@ it('Search tournament', function (done) {
     }).end(done);
 });
 
-//Работает
+
 it('Add tournament', function (done) {
     req(app).post('/tournament/add').expect({ "id": 4, "tournamentName": "Турнир 4" }).end(done);
 })
 
-//Работает
+
 it('Edit tournament', function (done) {
     req(app).put('/tournament/3/edit').expect({
         "tournaments": [
@@ -37,7 +37,7 @@ it('Edit tournament', function (done) {
     }).end(done);
 });
 
-//Не работает
+
 it('List of tournaments', function (done) {
     req(app).post('/tournament/search').expect([
         {
@@ -54,7 +54,7 @@ it('List of tournaments', function (done) {
         }]).end(done);
 });
 
-//Работает
+
 it('Delete tournament', function (done) {
     req(app).delete('/tournament/2/del').expect(200).end(done);
 });
