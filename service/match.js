@@ -37,8 +37,17 @@ async function updateMatch(tournamentId, matchId, matchChanges) {
     })
 }
 
+async function deleteMatch(tournamentId, matchId) {
+    await initData()
+
+    await Match.destroy({
+        where: {tournament_id: tournamentId, id: matchId}
+    })
+}
+
 module.exports = {
     findMatches: findMatches,
     findMatch: findMatch,
-    updateMatch: updateMatch
+    updateMatch: updateMatch,
+    deleteMatch: deleteMatch
 }
