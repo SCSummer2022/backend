@@ -21,11 +21,13 @@ describe("learners tests", () => {
         let response = await request(app).post('/learners');
 
         assert.equal(response.body, {
+            id: 2,
             role_id: 1,
             last_name: 'Кошкин',
             first_name: 'Дмитрий',
             second_name: 'Александрович',
-            birthday: '2001-05-13T20:00:00.000Z',
+            birthday: '2002-07-20',
+            phone_number: null,
             email: 'demon@mail.ru',
             password: 'YESYESYES',
             city: 1,
@@ -41,6 +43,11 @@ describe("teachers tests", () => {
         let response = await request(app).post('/teachers/search');
 
         assert.equal(response.body[0].id, 1)
+    });
+
+    it('should return user deleted', async function () {
+        let response = await request(app).post('/learners/search');
+        assert.equal(response.status, 200)
     });
 })
 

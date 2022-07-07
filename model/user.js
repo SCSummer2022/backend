@@ -56,10 +56,10 @@ const Team = sequelize.sequelize.define('Team', {
 /////////////////////
 //Role, Teacher
 Role.hasMany(Teacher, {foreignKey: {name: 'role_id'}})
-Teacher.belongsTo(Role, {foreignKey: {name: 'role_id'}})
+Teacher.belongsTo(Role, {foreignKey: {name: 'id'}})
 //Role, Learner
 Role.hasMany(Learner, {foreignKey: {name: 'role_id'}})
-Learner.belongsTo(Role, {foreignKey: {name: 'role_id'}})
+Learner.belongsTo(Role, {foreignKey: {name: 'id'}})
 //Learner, Match -> MatchParticipant
 Learner.belongsToMany(tournament.Match, {through: tournament.MatchParticipant, sourceKey: 'id', targetKey: 'id'})
 tournament.Match.belongsToMany(Learner, {through: tournament.MatchParticipant, sourceKey: 'id', targetKey: 'id'})
@@ -77,19 +77,19 @@ tournament.Tournament.belongsToMany(tournament.City, {through: tournament.CityPa
 tournament.City.belongsToMany(tournament.Tournament, {through: tournament.CityParticipant, sourceKey: 'id', targetKey: 'id'})
 //Tournament, Match
 tournament.Tournament.hasMany(tournament.Match, {foreignKey: {name: 'tournament_id'}})
-tournament.Match.belongsTo(tournament.Tournament)
+tournament.Match.belongsTo(tournament.Tournament, {foreignKey: {name: 'tournament_id'}})
 //Tournament, TournamentType
 tournament.TournamentType.hasMany(tournament.Tournament, {foreignKey: {name: 'tournament_type_id'}})
-tournament.Tournament.belongsTo(tournament.TournamentType)
+tournament.Tournament.belongsTo(tournament.TournamentType, {foreignKey: {name: 'id'}})
 //Tournament, SportType
 tournament.SportType.hasMany(tournament.Tournament, {foreignKey: {name: 'sport_id'}})
-tournament.Tournament.belongsTo(tournament.SportType)
+tournament.Tournament.belongsTo(tournament.SportType, {foreignKey: {name: 'id'}})
 //Learner, School
 School.hasMany(Learner, {foreignKey: {name: 'school'}})
-Learner.belongsTo(School)
+Learner.belongsTo(School, {foreignKey: {name: 'id'}})
 //Learner, City
 tournament.City.hasMany(Learner, {foreignKey: {name: 'city'}})
-Learner.belongsTo(tournament.City)
+Learner.belongsTo(tournament.City, {foreignKey: {name: 'id'}})
 
 
 //NOT WORKING!!!

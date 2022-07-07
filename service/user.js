@@ -14,5 +14,9 @@ module.exports = {
     createNewLearner: async function (newLearner){
         await Learner.create(newLearner);
         return await Learner.findByPk(2)
+    },
+    deleteLearner: async function (learnerForDelete, id){
+        await Learner.destroy({where: {id: id}})
+        return await Learner.findByPk(id)
     }
 }
