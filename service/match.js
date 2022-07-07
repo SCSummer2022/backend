@@ -4,6 +4,21 @@ async function initData() {
     await require('../model/tournament-data').init();
 }
 
+async function findMatches(tournamentId, page, pageSize) {
+    await initData()
+
+    let AllMatches = await Match.findAll({
+        where: {tournament_id: tournamentId}
+    })
+    let startIndex = page*pageSize
+    let indexAfter = Math.min(startIndex+pageSize, AllMatches.length)
+    let TargetMatches = []
+    for (let currIndex = startIndex; currIndex < indexAfter; currIndex++) {
+        TargetMatches.push(AllMatches[currIndex])
+    }
+    return TargetMatches
+}
+
 async function findMatch(tournamentId, matchId) {
     await initData()
 
@@ -23,6 +38,7 @@ async function updateMatch(tournamentId, matchId, matchChanges) {
 }
 
 module.exports = {
+    findMatches: findMatches,
     findMatch: findMatch,
     updateMatch: updateMatch
 }

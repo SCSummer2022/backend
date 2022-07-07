@@ -65,6 +65,24 @@ module.exports = {
                     name: 'some_match_name'
                 })
             )
+            .then(() => Match.create({
+                    id: 4,
+                    tournament_id: 4,
+                    name: 'some_match_name'
+                })
+            )
+            .then(() => Match.create({
+                    id: 5,
+                    tournament_id: 4,
+                    name: 'some_match_name'
+                })
+            )
+            .then(() => Match.create({
+                    id: 6,
+                    tournament_id: 4,
+                    name: 'some_match_name'
+                })
+            )
         await MatchParticipant.sync()
             .then(() => MatchParticipant.create({
                     id: 3,

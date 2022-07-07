@@ -4,13 +4,28 @@ const express = require("express")
 const app = express()
 let service = require('../service/match');
 
+app.post('/tournament/:tournament_id/match/*', require('../api/match'))
 app.put('/tournament/:tournament_id/match/*', require('../api/match'))
 
-it('PUT', async function () {
+it('Поиск матчей (POST)', async function () {
+    let tournamentId = 4
+    let matchId = 3
+    let body = {
+        page: 0,
+        pageSize: 2
+    }
+    let response = await request(app)
+        .post('/tournament/' + tournamentId + '/match/search')
+        .send(body);
+
+
+});
+
+it('Обновление матча (PUT)', async function () {
     let tournamentId = 4
     let matchId = 3
     let matchChanges = {
-        "name": "Матч 2 турнира 1 новое имя 3"
+        name: 'Матч 2 турнира 1 новое имя 3'
     }
     let response = await request(app)
         .put('/tournament/' + tournamentId + '/match/' + matchId + '/')
