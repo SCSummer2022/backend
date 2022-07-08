@@ -23,9 +23,9 @@ router.delete('/:id', (req, res) => {
 
 //Добавление турнира
 router.post('/', (req, res) => {
-    //использовать параметры из запроса
-    let i = 4;
-    let search = service.tournamentAdd(i, 'Турнир 4');
+    let tournamentID = Number(req.body.tournamentID);
+    let tournamentName = String(req.body.tournamentName);
+    let search = service.tournamentAdd(tournamentID, tournamentName);
     res.json(search);
 });
 
@@ -39,8 +39,8 @@ router.get('/:id', (req, res) => {
 //Редактирование турнира
 router.put('/:id', (req, res) => {
     let tournamentID = Number(req.params.id);
-    //todo use req.body - параметры из запроса
-    let edit = service.tournamentEdit(tournamentID, "Какое-то новое название турнира");
+    let tournamentNewName = String(req.body.tournamentNewName);
+    let edit = service.tournamentEdit(tournamentID, tournamentNewName);
     res.json(edit)
 });
 

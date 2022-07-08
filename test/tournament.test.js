@@ -11,12 +11,14 @@ it('Search tournament', function (done) {
 
 
 it('Add tournament', function (done) {
-    req(app).post('/tournament/add').expect({"id": 4, "tournamentName": "Турнир 4"}).end(done);
+    req(app).post('/tournament').send({ tournamentID: 4, tournamentName: "Турнир 4" }).expect({ "id": 4, "tournamentName": "Турнир 4" }).end(done);
 })
 
 
 it('Edit tournament', function (done) {
-    req(app).put('/tournament/3/edit').expect({
+    req(app).put('/tournament/3').send({
+        tournamentNewName: "Какое-то новое название турнира"
+    }).expect({
         "tournaments": [
             {
                 "id": 1,
@@ -40,7 +42,7 @@ it('Edit tournament', function (done) {
 
 it('List of tournaments', function (done) {
     req(app).post('/tournament/search')
-        .send({page: 1, size: 3})
+        .send({ page: 1, size: 3 })
         .expect([
             {
                 "id": 1,
@@ -58,5 +60,5 @@ it('List of tournaments', function (done) {
 
 
 it('Delete tournament', function (done) {
-    req(app).delete('/tournament/2/del').expect(200).end(done);
+    req(app).delete('/tournament/2').expect(200).end(done);
 });
