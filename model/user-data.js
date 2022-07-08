@@ -43,6 +43,45 @@ module.exports = {
             class: 5,
             fav_sport_types: null
         })
+        await Learner.create({
+            role_id: 1,
+            last_name: 'Андреевич',
+            first_name: 'Павел',
+            second_name: 'Небойков',
+            birthday: new Date(2002, 6, 20),
+            email: 'neboi222@mail.ru',
+            password: 'easypeasy',
+            city: 1,
+            school: 1,
+            class: 5,
+            fav_sport_types: null
+        })
+        await Learner.create({
+            role_id: 1,
+            last_name: 'Андреевич',
+            first_name: 'Павел',
+            second_name: 'Небойков',
+            birthday: new Date(2002, 6, 20),
+            email: 'neboi222@mail.ru',
+            password: 'easypeasy',
+            city: 1,
+            school: 1,
+            class: 5,
+            fav_sport_types: null
+        })
+        await Learner.create({
+            role_id: 1,
+            last_name: 'Андреевич',
+            first_name: 'Павел',
+            second_name: 'Небойков',
+            birthday: new Date(2002, 6, 20),
+            email: 'neboi222@mail.ru',
+            password: 'easypeasy',
+            city: 1,
+            school: 1,
+            class: 5,
+            fav_sport_types: null
+        })
 
 
         await Teacher.sync();

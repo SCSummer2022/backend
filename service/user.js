@@ -1,18 +1,30 @@
-const {Learner} = require("../model/user");
-const {Teacher} = require("../model/user");
+const {Learner, Teacher} = require("../model/user");
 
 module.exports = {
 
 //todo нужно использовать тело запроса - где находятся параметры поиска
     getLearnersInfo: async function (pageParams) {
+        await require('../model/user-data').init();
         let page = pageParams.page;
         let pageSize = pageParams.pageSize;
-        await require('../model/user-data').init();
-        return pageParams;
+        let learnersList = new Array();
+        for (let i = page*pageSize-pageSize+1; i <= page*pageSize; i++){
+            let learnerInfo = await Learner.findByPk(i);
+            learnersList.push(learnerInfo)
+        }
+        return learnersList
     },
 
-    getTeachersInfo: async function () {
+    getTeachersInfo: async function (pageParams) {
         await require('../model/user-data').init();
-        return await Teacher.findAll();
+        let teacherInfo;
+        let page = pageParams.page;
+        let pageSize = pageParams.pageSize;
+        let teachersList = new Array();
+        for (let i = page*pageSize-pageSize+1; i <= page*pageSize; i++){
+            teacherInfo = await Teacher.findByPk(i);
+            teachersList.push(teacherInfo)
+        }
+        return teachersList
     }
 }

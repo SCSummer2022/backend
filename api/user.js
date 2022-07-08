@@ -6,13 +6,14 @@ const {Learner} = require("../model/user");
 
 let learnersSearch = async function (req, res) {
     let pageParams = req.query;
-    let learnersInfo = await service.getLearnersInfo(pageParams);
-    res.json(learnersInfo)
+    let learnersList = await service.getLearnersInfo(pageParams);
+    res.json(learnersList)
 }
 
 let teachersSearch = async function (req, res) {
-    let teachersInfo = await service.getTeachersInfo();
-    res.json(teachersInfo)
+    let pageParams = req.query;
+    let teachersList = await service.getTeachersInfo(pageParams);
+    res.json(teachersList)
 }
 
 
