@@ -37,5 +37,12 @@ module.exports = {
         let deletedLearner = await Learner.findByPk(learnerId)
         await deletedLearner.destroy()
         return deletedLearner
+    },
+    updateLearner: async function (learnerId, learnerParams) {
+        await require('../model/user-data').init()
+        let updatedLearner = await Learner.findByPk(learnerId)
+        updatedLearner.set(learnerParams)
+        await updatedLearner.save()
+        return updatedLearner
     }
 }

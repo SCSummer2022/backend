@@ -15,7 +15,7 @@ let teachersSearch = async function (req, res) {
     res.json(teachersList)
 }
 
-let newLearner = async function (req, res) {
+let learnerAdd = async function (req, res) {
     let learnerParams = req.query;
     let learnerInfo = await service.addNewLearner(learnerParams);
     res.json(learnerInfo)
@@ -26,12 +26,20 @@ let learnerDelete = async function (req, res) {
     let learnerInfo = await service.deleteLearner(learnerId)
     res.json(learnerInfo)
 }
+let learnerUpdate = async function (req, res) {
+    let learnerId = req.params.id;
+    let learnerParams = req.query;
+    let learnerInfo = await service.updateLearner(learnerId, learnerParams);
+    res.json(learnerInfo)
+}
+
 
 
 
 router.post('/learners/search', learnersSearch)
 router.post('/teachers/search', teachersSearch)
-router.post('/learners', newLearner)
+router.post('/learners', learnerAdd)
 router.delete('/learners/delete/:id', learnerDelete)
+router.put('/learners/update/:id', learnerUpdate)
 
 module.exports = router;
