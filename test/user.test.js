@@ -34,7 +34,11 @@ describe("learners tests", () => {
         .post(`/learners?role_id=${TestLearner.role_id}&last_name=${TestLearner.last_name}&first_name=${TestLearner.first_name}&second_name=${TestLearner.second_name}&birthday=${TestLearner.birthday.toISOString()}&email=${TestLearner.email}&password=${TestLearner.password}&city=${TestLearner.city}&school=${TestLearner.school}&class=${TestLearner.class}&fav_sport_types=${TestLearner.fav_sport_types}`);
 
         assert.equal(response.body.id, 5)
-    });
+    })
+    it('Вернуть данные удалённого ученика', async function (){
+        let response = await request(app).delete('/learners/delete/1')
+        assert.equal(response.body.id, 1)
+    })
 })
 
 describe("teachers tests", () => {

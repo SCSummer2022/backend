@@ -21,10 +21,17 @@ let newLearner = async function (req, res) {
     res.json(learnerInfo)
 }
 
+let learnerDelete = async function (req, res) {
+    let learnerId = req.params.id;
+    let learnerInfo = await service.deleteLearner(learnerId)
+    res.json(learnerInfo)
+}
+
 
 
 router.post('/learners/search', learnersSearch)
 router.post('/teachers/search', teachersSearch)
 router.post('/learners', newLearner)
+router.delete('/learners/delete/:id', learnerDelete)
 
 module.exports = router;

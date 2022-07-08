@@ -28,8 +28,14 @@ module.exports = {
         return teachersList
     },
     addNewLearner: async function (learnerParams) {
-        await require('../model/user-data').init();
+        await require('../model/user-data').init()
         let newLearner = Learner.create(learnerParams)
         return newLearner
+    },
+    deleteLearner: async function (learnerId) {
+        await require('../model/user-data').init()
+        let deletedLearner = await Learner.findByPk(learnerId)
+        await deletedLearner.destroy()
+        return deletedLearner
     }
 }
