@@ -1,27 +1,29 @@
 const express = require('express');
 let router = express.Router();
 
+const bodyParser = require('body-parser');
+router.use(bodyParser.json())
+
 let service = require('../service/tournament');
 
 //Поиск постранично
 router.post('/search', (req, res) => {
-    // let page = Number(req.params.page);
-    // let size = Number(req.params.size);
-    let page = 1;
-    let size = 3;
+    let page = Number(req.body.page);
+    let size = Number(req.body.size);
     let search = service.getListOfTournaments(page, size);
     res.json(search);
 });
 
 //Удаление турнира
-router.delete('/:id/del', (req, res) => {
+router.delete('/:id', (req, res) => {
     let tournamentID = Number(req.params.id);
     let deleted = service.tournamentDel(tournamentID);
     res.json(deleted);
 });
 
 //Добавление турнира
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
+    //использовать параметры из запроса
     let i = 4;
     let search = service.tournamentAdd(i, 'Турнир 4');
     res.json(search);
@@ -35,8 +37,9 @@ router.get('/:id', (req, res) => {
 });
 
 //Редактирование турнира
-router.put('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
     let tournamentID = Number(req.params.id);
+    //todo use req.body - параметры из запроса
     let edit = service.tournamentEdit(tournamentID, "Какое-то новое название турнира");
     res.json(edit)
 });

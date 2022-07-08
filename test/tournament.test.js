@@ -11,7 +11,7 @@ it('Search tournament', function (done) {
 
 
 it('Add tournament', function (done) {
-    req(app).post('/tournament/add').expect({ "id": 4, "tournamentName": "Турнир 4" }).end(done);
+    req(app).post('/tournament/add').expect({"id": 4, "tournamentName": "Турнир 4"}).end(done);
 })
 
 
@@ -39,19 +39,21 @@ it('Edit tournament', function (done) {
 
 
 it('List of tournaments', function (done) {
-    req(app).post('/tournament/search').expect([
-        {
-            "id": 1,
-            "tournamentName": "Турнир 1"
-        },
-        {
-            "id": 2,
-            "tournamentName": "Турнир 2"
-        },
-        {
-            "id": 3,
-            "tournamentName": "Какое-то новое название турнира"
-        }]).end(done);
+    req(app).post('/tournament/search')
+        .send({page: 1, size: 3})
+        .expect([
+            {
+                "id": 1,
+                "tournamentName": "Турнир 1"
+            },
+            {
+                "id": 2,
+                "tournamentName": "Турнир 2"
+            },
+            {
+                "id": 3,
+                "tournamentName": "Какое-то новое название турнира"
+            }]).end(done);
 });
 
 
