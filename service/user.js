@@ -26,5 +26,10 @@ module.exports = {
             teachersList.push(teacherInfo)
         }
         return teachersList
+    },
+    addNewLearner: async function (learnerParams) {
+        await require('../model/user-data').init();
+        let newLearner = Learner.create(learnerParams)
+        return newLearner
     }
 }
