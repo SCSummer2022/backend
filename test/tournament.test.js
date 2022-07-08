@@ -42,7 +42,7 @@ it('Edit tournament', function (done) {
 
 it('List of tournaments', function (done) {
     req(app).post('/tournament/search')
-        .send({ page: 1, size: 3 })
+        .send({ page: -1, size: 3 })
         .expect([
             {
                 "id": 1,
