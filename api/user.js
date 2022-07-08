@@ -4,16 +4,22 @@ let router = express.Router();
 let service = require('../service/user');
 const {Learner} = require("../model/user");
 
+//todo нужно использовать тело запроса - где находятся параметры поиска
+//это page и pageSize
 let learnersSearch = async function (req, res) {
     let learnersInfo = await service.getLearnersInfo();
     res.json(learnersInfo)
 }
 
+
+//todo нужно использовать тело запроса - где находятся параметры поиска
+//это page и pageSize
 let teachersSearch = async function (req, res) {
     let teachersInfo = await service.getTeachersInfo();
     res.json(teachersInfo)
 }
 
+//todo использовать данные учителя из тела запроса
 let createLearner = async function (req, res) {
     let newLearner = {
         role_id: 1,
@@ -33,9 +39,11 @@ let createLearner = async function (req, res) {
     res.json(learnerInfo)
 }
 
+//todo использовать идентификатор из параметра запроса
 let deleteLearner = async function (req, res) {
+    //todo убрать, так как контроллер не должен содержать бизнес логики и знать об инфраструктуре
     let learnerForDelete = Learner.findByPk(2)
-    let learnerInfo = await service.deleteLearner(learnerForDelete, 2);
+    let learnerInfo = await service.deleteLearner(2);
     res.json(learnerInfo)
 }
 

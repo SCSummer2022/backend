@@ -52,6 +52,7 @@ const Team = sequelize.sequelize.define('Team', {
 });
 
 
+
 //СВЯЗИ ТАБЛИЦ
 /////////////////////
 //Role, Teacher
