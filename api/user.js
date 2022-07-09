@@ -57,13 +57,13 @@ let teacherUpdate = async function (req, res) {
 //УЧЕНИК
 router.post('/learners/search', learnersSearch)
 router.post('/learners', learnerAdd)
-router.delete('/learners/delete/:id', learnerDelete)
-router.put('/learners/update/:id', learnerUpdate)
+router.delete('/learners/:id', learnerDelete)
+router.put('/learners/:id', learnerUpdate)
 
 //УЧИТЕЛЬ
 router.post('/teachers/search', teachersSearch)
 router.post('/teachers', teacherAdd)
-router.delete('/teachers/delete/:id', teacherDelete)
-router.put('/teachers/update/:id', teacherUpdate)
+router.delete('/teachers/:id', teacherDelete)
+router.put('/teachers/:id', teacherUpdate)
 
 module.exports = router;

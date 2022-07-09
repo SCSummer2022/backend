@@ -12,7 +12,7 @@ describe("learners tests", () => {
         let page = 2;
         let pageSize = 2;
         let response = await request(app)
-        .post(`/learners/search?page=${page}&pageSize=${pageSize}`);
+            .post(`/learners/search?page=${page}&pageSize=${pageSize}`);
 
         assert.equal(response.body[1].id, 4)
     });
@@ -28,19 +28,19 @@ describe("learners tests", () => {
             city: 1,
             school: 1,
             class: 5,
-            fav_sport_types: null    
+            fav_sport_types: null
         }
         let response = await request(app)
-        .post(`/learners?role_id=${TestLearner.role_id}&last_name=${TestLearner.last_name}&first_name=${TestLearner.first_name}&second_name=${TestLearner.second_name}&birthday=${TestLearner.birthday.toISOString()}&email=${TestLearner.email}&password=${TestLearner.password}&city=${TestLearner.city}&school=${TestLearner.school}&class=${TestLearner.class}&fav_sport_types=${TestLearner.fav_sport_types}`);
+            .post(`/learners?role_id=${TestLearner.role_id}&last_name=${TestLearner.last_name}&first_name=${TestLearner.first_name}&second_name=${TestLearner.second_name}&birthday=${TestLearner.birthday.toISOString()}&email=${TestLearner.email}&password=${TestLearner.password}&city=${TestLearner.city}&school=${TestLearner.school}&class=${TestLearner.class}&fav_sport_types=${TestLearner.fav_sport_types}`);
 
         assert.equal(response.body.id, 5)
     })
     it('Вернуть данные удалённого ученика', async function (){
-        let response = await request(app).delete('/learners/delete/1')
+        let response = await request(app).delete('/learners/1')
         assert.equal(response.body.id, 1)
     })
     it('Вернуть изменённые данные ученика', async function (){
-        let response = await request(app).put('/learners/update/2?class=100')
+        let response = await request(app).put('/learners/2?class=100')
         assert.equal(response.body.class, 100)
     })
 })
@@ -65,18 +65,19 @@ describe("teachers tests", () => {
             access: true
         }
         let response = await request(app)
-        .post(`/teachers?role_id=${TestTeacher.role_id}&last_name=${TestTeacher.last_name}&first_name=${TestTeacher.first_name}&second_name=${TestTeacher.second_name}&birthday=${TestTeacher.birthday.toISOString()}&city=${TestTeacher.city}&school=${TestTeacher.school}&email=${TestTeacher.email}&access=${TestTeacher.access}&password=${TestTeacher.password}`);
+            .post(`/teachers?role_id=${TestTeacher.role_id}&last_name=${TestTeacher.last_name}&first_name=${TestTeacher.first_name}&second_name=${TestTeacher.second_name}&birthday=${TestTeacher.birthday.toISOString()}&city=${TestTeacher.city}&school=${TestTeacher.school}&email=${TestTeacher.email}&access=${TestTeacher.access}&password=${TestTeacher.password}`);
 
         assert.equal(response.body.id, 2)
     })
+
     it('Вернуть данные удалённого учителя', async function (){
-        let response = await request(app).delete('/teachers/delete/1')
+        let response = await request(app).delete('/teachers/1')
         assert.equal(response.body.id, 1)
     })
+
     it('Вернуть изменённые данные учителя', async function (){
-        let response = await request(app).put('/teachers/update/2?school=100')
+        let response = await request(app).put('/teachers/2?school=100')
         assert.equal(response.body.school, 100)
     })
 })
-
 
