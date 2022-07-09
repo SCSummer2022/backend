@@ -1,5 +1,5 @@
 const {Role, Learner, Teacher, Team, School} = require('./user');
-const {City} = require("./tournament");
+const {City} = require('./tournament');
 
 
 let init = false;
@@ -26,8 +26,8 @@ module.exports = {
         await School.create({name: 'Школа 5'})
 
         await City.sync()
-        await School.create({name: 'Москва'})
-        await School.create({name: 'Новосибирск'})
+        await City.create({id: 1, name: 'Москва'})
+        await City.create({id: 2, name: 'Новосибирск'})
 
         await Learner.sync();
         await Learner.create({
