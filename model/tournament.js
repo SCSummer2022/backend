@@ -63,8 +63,14 @@ sequelize.sequelize.sync()
 MatchResult.hasMany(MatchParticipant, {foreignKey: 'match_result'})
 MatchParticipant.belongsTo(MatchResult, {foreignKey: 'match_result'})
 
+TournamentType.hasMany(Tournament, {foreignKey: 'tournament_type_id'})
+Tournament.belongsTo(TournamentType, {foreignKey: 'tournament_type_id'})
 
+SportType.hasMany(Tournament, {foreignKey: 'sport_type'})
+Tournament.belongsTo(SportType, {foreignKey: 'sport_type'})
 
+City.hasMany(Tournament, {foreignKey: 'city'})
+Tournament.belongsTo(City, {foreignKey: 'city'})
 
 
 module.exports = {
