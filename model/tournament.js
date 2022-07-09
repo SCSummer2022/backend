@@ -50,12 +50,22 @@ const MatchParticipant = sequelize.sequelize.define('MatchParticipant', {
     match_id: {type: DataTypes.INTEGER, allowNull: false},
     user_id: {type: DataTypes.INTEGER},
     team_id: {type: DataTypes.INTEGER},
-    match_result: {type: DataTypes.STRING}
+    match_result: {type: DataTypes.INTEGER}
 });
 const MatchResult = sequelize.sequelize.define('MatchResult', {
     id: {type: DataTypes.INTEGER, primaryKey: true},
     name: {type: DataTypes.INTEGER, allowNull: false}
 });
+
+
+sequelize.sequelize.sync()
+
+MatchResult.hasMany(MatchParticipant, {foreignKey: 'match_result'})
+MatchParticipant.belongsTo(MatchResult, {foreignKey: 'match_result'})
+
+
+
+
 
 module.exports = {
     TournamentType: TournamentType,

@@ -88,8 +88,7 @@ module.exports = {
                     id: 3,
                     match_id: 3,
                     user_id: 3,
-                    team_id: 3,
-                    match_result: 3
+                    team_id: 13
                 })
             )
         await MatchResult.sync()
