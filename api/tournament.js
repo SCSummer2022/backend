@@ -7,12 +7,12 @@ router.use(bodyParser.json())
 let service = require('../service/tournament');
 
 //Поиск постранично
-router.post('/search', (req, res) => {
-    let page = Number(req.body.page);
-    let size = Number(req.body.size);
-    let search = service.getListOfTournaments(page, size);
-    res.json(search);
-});
+// router.post('/search', (req, res) => {
+//     let page = Number(req.body.page);
+//     let size = Number(req.body.size);
+//     let search = service.getListOfTournaments(page, size);
+//     res.json(search);
+// });
 
 //Удаление турнира
 router.delete('/:id', (req, res) => {
@@ -23,9 +23,7 @@ router.delete('/:id', (req, res) => {
 
 //Добавление турнира
 router.post('/', (req, res) => {
-    let tournamentID = Number(req.body.tournamentID);
-    let tournamentName = String(req.body.tournamentName);
-    let search = service.tournamentAdd(tournamentID, tournamentName);
+    let search = service.tournamentAdd(req.body);
     res.json(search);
 });
 
@@ -39,8 +37,7 @@ router.get('/:id', (req, res) => {
 //Редактирование турнира
 router.put('/:id', (req, res) => {
     let tournamentID = Number(req.params.id);
-    let tournamentNewName = String(req.body.tournamentNewName);
-    let edit = service.tournamentEdit(tournamentID, tournamentNewName);
+    let edit = service.tournamentEdit(tournamentID, req.body);
     res.json(edit)
 });
 
