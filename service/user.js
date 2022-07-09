@@ -51,5 +51,11 @@ module.exports = {
         await require('../model/user-data').init()
         let newTeacher = await Teacher.create(teacherParams)
         return newTeacher
+    },
+    deleteTeacher: async function (teacherId) {
+        await require('../model/user-data').init()
+        let deletedTeacher = await Teacher.findByPk(teacherId)
+        await deletedTeacher.destroy()
+        return deletedTeacher
     }
 }
