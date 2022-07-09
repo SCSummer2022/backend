@@ -1,5 +1,6 @@
 const sequelize = require('./db');
 const {DataTypes} = require('sequelize');
+//const {Learner,Team} = require('./user');
 
 const TournamentType = sequelize.sequelize.define('TournamentType', {
     id: {type: DataTypes.INTEGER, primaryKey: true},
@@ -60,22 +61,22 @@ const MatchResult = sequelize.sequelize.define('MatchResult', {
 sequelize.sequelize.sync()
 
 TournamentType.hasMany(Tournament, {foreignKey: 'tournament_type_id'})
-Tournament.belongsTo(TournamentType)
+Tournament.belongsTo(TournamentType, {foreignKey: 'tournament_type_id'})
 
 SportType.hasMany(Tournament, {foreignKey: 'sport_type'})
-Tournament.belongsTo(SportType)
+Tournament.belongsTo(SportType, {foreignKey: 'sport_type'})
 
 City.hasMany(Tournament, {foreignKey: 'city'})
-Tournament.belongsTo(City)
+Tournament.belongsTo(City, {foreignKey: 'city'})
 
 MatchResult.hasMany(MatchParticipant, {foreignKey: 'match_result'})
-MatchParticipant.belongsTo(MatchResult)
+MatchParticipant.belongsTo(MatchResult, {foreignKey: 'match_result'})
 
-Tournament.belongsToMany(City, {through: 'CityParticipant'})
-City.belongsToMany(Tournament, {through: 'CityParticipant'})
+Tournament.belongsToMany(City, {through: 'CityParticipant', foreignKey: 'tournament_id'})
+City.belongsToMany(Tournament, {through: 'CityParticipant', foreignKey: 'city_id'})
 
 Tournament.hasMany(Match, {foreignKey: 'tournament_id'})
-Match.belongsTo(Tournament)
+Match.belongsTo(Tournament, {foreignKey: 'tournament_id'})
 
 module.exports = {
     TournamentType: TournamentType,
