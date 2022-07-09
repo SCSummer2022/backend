@@ -46,11 +46,29 @@ describe("learners tests", () => {
 })
 
 describe("teachers tests", () => {
-    it('should return teachers Info', async function () {
+    it('Вернуть информацию об учителях', async function () {
         let response = await request(app).post('/teachers/search?page=1&pageSize=1');
-
         assert.equal(response.body[0].id, 1)
-    });
+    })
+    it('Вернуть информацию о новом учителе', async function () {
+        let TestTeacher = {
+            role_id: 2,
+            last_name: 'Samson',
+            first_name: 'Sek',
+            second_name: 'Bot',
+            birthday: new Date(1977, 3, 15),
+            phone_number: '73748378900',
+            email: 'ssbot@mail.ru',
+            password: 'ksteach93#',
+            city: 1,
+            school: 5,
+            access: true
+        }
+        let response = await request(app)
+        .post(`/teachers?role_id=${TestTeacher.role_id}&last_name=${TestTeacher.last_name}&first_name=${TestTeacher.first_name}&second_name=${TestTeacher.second_name}&birthday=${TestTeacher.birthday.toISOString()}&city=${TestTeacher.city}&school=${TestTeacher.school}&email=${TestTeacher.email}&access=${TestTeacher.access}&password=${TestTeacher.password}`);
+
+        assert.equal(response.body.id, 2)
+    })
 })
 
 

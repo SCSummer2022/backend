@@ -1,8 +1,9 @@
-const {Learner, Teacher} = require("../model/user");
+const {Learner} = require("../model/user");
+const {Teacher} = require("../model/user");
 
 module.exports = {
 
-//todo нужно использовать тело запроса - где находятся параметры поиска
+//методы ученика
     getLearnersInfo: async function (pageParams) {
         await require('../model/user-data').init();
         let page = pageParams.page;
@@ -14,22 +15,9 @@ module.exports = {
         }
         return learnersList
     },
-
-    getTeachersInfo: async function (pageParams) {
-        await require('../model/user-data').init();
-        let teacherInfo;
-        let page = pageParams.page;
-        let pageSize = pageParams.pageSize;
-        let teachersList = new Array();
-        for (let i = page*pageSize-pageSize+1; i <= page*pageSize; i++){
-            teacherInfo = await Teacher.findByPk(i);
-            teachersList.push(teacherInfo)
-        }
-        return teachersList
-    },
     addNewLearner: async function (learnerParams) {
         await require('../model/user-data').init()
-        let newLearner = Learner.create(learnerParams)
+        let newLearner = await Learner.create(learnerParams)
         return newLearner
     },
     deleteLearner: async function (learnerId) {
@@ -44,5 +32,24 @@ module.exports = {
         updatedLearner.set(learnerParams)
         await updatedLearner.save()
         return updatedLearner
+    },
+
+//методы учителя
+    getTeachersInfo: async function (pageParams) {
+        await require('../model/user-data').init();
+        let teacherInfo;
+        let page = pageParams.page;
+        let pageSize = pageParams.pageSize;
+        let teachersList = new Array();
+        for (let i = page*pageSize-pageSize+1; i <= page*pageSize; i++){
+            teacherInfo = await Teacher.findByPk(i);
+            teachersList.push(teacherInfo)
+        }
+        return teachersList
+    },
+    addNewTeacher: async function (teacherParams) {
+        await require('../model/user-data').init()
+        let newTeacher = await Teacher.create(teacherParams)
+        return newTeacher
     }
 }

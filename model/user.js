@@ -19,7 +19,7 @@ const Learner = sequelize.sequelize.define('Learner', {
     last_name: {type: DataTypes.STRING, allowNull: false},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
-    birthday: {type: DataTypes.DATEONLY, allowNull: true},
+    birthday: {type: DataTypes.DATEONLY, allowNull: false},
     phone_number: {type: DataTypes.INTEGER},
     email: {type: DataTypes.STRING, allowNull: false},
     password: {type: DataTypes.STRING, allowNull: false},

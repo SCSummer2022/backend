@@ -3,16 +3,11 @@ let router = express.Router();
 
 let service = require('../service/user');
 
+//УЧЕНИК
 let learnersSearch = async function (req, res) {
     let pageParams = req.query;
     let learnersList = await service.getLearnersInfo(pageParams);
     res.json(learnersList)
-}
-
-let teachersSearch = async function (req, res) {
-    let pageParams = req.query;
-    let teachersList = await service.getTeachersInfo(pageParams);
-    res.json(teachersList)
 }
 
 let learnerAdd = async function (req, res) {
@@ -33,13 +28,27 @@ let learnerUpdate = async function (req, res) {
     res.json(learnerInfo)
 }
 
+//УЧИТЕЛЬ
+let teachersSearch = async function (req, res) {
+    let pageParams = req.query;
+    let teachersList = await service.getTeachersInfo(pageParams);
+    res.json(teachersList)
+}
 
+let teacherAdd = async function (req, res) {
+    let teacherParams = req.query;
+    let teacherInfo = await service.addNewTeacher(teacherParams);
+    res.json(teacherInfo)
+}
 
-
+//УЧЕНИК
 router.post('/learners/search', learnersSearch)
-router.post('/teachers/search', teachersSearch)
 router.post('/learners', learnerAdd)
 router.delete('/learners/delete/:id', learnerDelete)
 router.put('/learners/update/:id', learnerUpdate)
+
+//УЧИТЕЛЬ
+router.post('/teachers/search', teachersSearch)
+router.post('/teachers', teacherAdd)
 
 module.exports = router;
