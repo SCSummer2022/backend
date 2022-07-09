@@ -57,21 +57,25 @@ const MatchResult = sequelize.sequelize.define('MatchResult', {
     name: {type: DataTypes.INTEGER, allowNull: false}
 });
 
-
 sequelize.sequelize.sync()
 
-MatchResult.hasMany(MatchParticipant, {foreignKey: 'match_result'})
-MatchParticipant.belongsTo(MatchResult, {foreignKey: 'match_result'})
-
 TournamentType.hasMany(Tournament, {foreignKey: 'tournament_type_id'})
-Tournament.belongsTo(TournamentType, {foreignKey: 'tournament_type_id'})
+Tournament.belongsTo(TournamentType)
 
 SportType.hasMany(Tournament, {foreignKey: 'sport_type'})
-Tournament.belongsTo(SportType, {foreignKey: 'sport_type'})
+Tournament.belongsTo(SportType)
 
 City.hasMany(Tournament, {foreignKey: 'city'})
-Tournament.belongsTo(City, {foreignKey: 'city'})
+Tournament.belongsTo(City)
 
+MatchResult.hasMany(MatchParticipant, {foreignKey: 'match_result'})
+MatchParticipant.belongsTo(MatchResult)
+
+Tournament.belongsToMany(City, {through: 'CityParticipant'})
+City.belongsToMany(Tournament, {through: 'CityParticipant'})
+
+Tournament.hasMany(Match, {foreignKey: 'tournament_id'})
+Match.belongsTo(Tournament)
 
 module.exports = {
     TournamentType: TournamentType,

@@ -20,10 +20,10 @@ it('Поиск матчей (POST)', async function () {
     assert.notStrictEqual(await service.findMatches(tournamentId, body.page, body.pageSize), response.body)
 });
 
-it('Добаление матча (POST)', async function () {
-    let tournamentId = 10
+it('Добавление матча (POST)', async function () {
+    let tournamentId = 4
     let matchData = {
-        matchId: '14',
+        matchId: 14,
         matchName: 'Добавленный матч'
     }
     let response = await request(app)
