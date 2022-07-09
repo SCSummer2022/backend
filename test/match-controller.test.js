@@ -4,10 +4,7 @@ const express = require("express")
 const app = express()
 let service = require('../service/match');
 
-app.post('/tournament/:tournamentId/match/:matchId', require('../api/match'))
-app.post('/tournament/:tournamentId/match', require('../api/match'))
-app.put('/tournament/:tournamentId/match/:matchId', require('../api/match'))
-app.delete('/tournament/:tournamentId/match/:matchId', require('../api/match'))
+app.use('/', require('../api/match'))
 
 
 it('Поиск матчей (POST)', async function () {
@@ -20,8 +17,7 @@ it('Поиск матчей (POST)', async function () {
         .post('/tournament/' + tournamentId + '/match/search')
         .send(body);
 
-    let targetMatches = await service.findMatches(tournamentId, body.page, body.pageSize)
-    assert.notStrictEqual(targetMatches, response.body)
+    assert.notStrictEqual(await service.findMatches(tournamentId, body.page, body.pageSize), response.body)
 });
 
 it('Добаление матча (POST)', async function () {
