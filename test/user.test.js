@@ -69,9 +69,13 @@ describe("teachers tests", () => {
 
         assert.equal(response.body.id, 2)
     })
-    it('Вернуть данные удалённого ученика', async function (){
+    it('Вернуть данные удалённого учителя', async function (){
         let response = await request(app).delete('/teachers/delete/1')
         assert.equal(response.body.id, 1)
+    })
+    it('Вернуть изменённые данные учителя', async function (){
+        let response = await request(app).put('/teachers/update/2?school=100')
+        assert.equal(response.body.school, 100)
     })
 })
 

@@ -47,6 +47,13 @@ let teacherDelete = async function (req, res) {
     res.json(teacherInfo)
 }
 
+let teacherUpdate = async function (req, res) {
+    let teacherId = req.params.id;
+    let teacherParams = req.query;
+    let teacherInfo = await service.updateTeacher(teacherId, teacherParams);
+    res.json(teacherInfo)
+}
+
 //УЧЕНИК
 router.post('/learners/search', learnersSearch)
 router.post('/learners', learnerAdd)
@@ -57,5 +64,6 @@ router.put('/learners/update/:id', learnerUpdate)
 router.post('/teachers/search', teachersSearch)
 router.post('/teachers', teacherAdd)
 router.delete('/teachers/delete/:id', teacherDelete)
+router.put('/teachers/update/:id', teacherUpdate)
 
 module.exports = router;

@@ -57,5 +57,12 @@ module.exports = {
         let deletedTeacher = await Teacher.findByPk(teacherId)
         await deletedTeacher.destroy()
         return deletedTeacher
+    },
+    updateTeacher: async function (teacherId, teacherParams) {
+        await require('../model/user-data').init()
+        let updatedTeacher = await Teacher.findByPk(teacherId)
+        updatedTeacher.set(teacherParams)
+        await updatedTeacher.save()
+        return updatedTeacher
     }
 }
