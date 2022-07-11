@@ -6,13 +6,9 @@ module.exports = {
 //методы ученика
     getLearnersInfo: async function (pageParams) {
         await require('../model/user-data').init();
-        let page = pageParams.page;
+        let page = pageParams.page - 1;
         let pageSize = pageParams.pageSize;
-        let learnersList = new Array();
-        for (let i = page*pageSize-pageSize+1; i <= page*pageSize; i++){
-            let learnerInfo = await Learner.findByPk(i);
-            learnersList.push(learnerInfo)
-        }
+        let learnersList = await Learner.findAll({offset: page*pageSize, limit: pageSize});
         return learnersList
     },
     addNewLearner: async function (learnerParams) {
