@@ -43,16 +43,17 @@ async function tournamentAdd(newTrnmnt) {
         class_max: newTrnmnt.class_max,
         team_size: newTrnmnt.team_size
     });
-    return addTour;
+    // return addTour;
 }
 
 //Редактирование турнира
 async function tournamentEdit(tournamentID, changes) {
     await initData();
 
-    await Tournament.update(changes, {
-        where: { id: tournamentID }
-    });
+    let updated = await Tournament.findByPk(tournamentID);
+    updated.set(changes);
+    await updated.save();
+    return updated
 }
 
 //Удаление
@@ -67,18 +68,13 @@ async function tournamentDel(tournamentIdForDel) {
 //Поиск постранично
 async function getListOfTournaments(page, size) {
     await initData()
-    if (page < 0 || size < 1) {
+
+    if (page < 1 || size < 1) {
         return
     }
-    let AllTournaments = await Tournament.findAll();
-
-    let startIndex = page * size;
-    let indexAfter = Math.min(startIndex + size, AllTournaments.length);
-    let parsedTournaments = [];
-    for (let currIndex = startIndex; currIndex < indexAfter; currIndex++) {
-        parsedTournaments.push(getModelData(AllTournaments[currIndex]))
-    }
-    return parsedTournaments
+    let startIndex = (page * size) - size;
+    let AllTournaments = await Tournament.findAll({ offset: startIndex, limit: size });
+    return AllTournaments.length;
 }
 
 module.exports = {
