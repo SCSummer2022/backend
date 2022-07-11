@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db');
-const tournament = require('../model/tournament')
-
+//const tournament = require('../model/tournament')
 
 const Role = sequelize.sequelize.define('Role', {
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -51,7 +50,12 @@ const Team = sequelize.sequelize.define('Team', {
     name: {type: DataTypes.STRING, allowNull: false}
 });
 
+const City = sequelize.sequelize.define('City', {
+    id: {type: DataTypes.INTEGER, primaryKey: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+});
 
+//sequelize.sequelize.sync()
 
 //СВЯЗИ ТАБЛИЦ
 /////////////////////
@@ -65,43 +69,11 @@ Teacher.belongsTo(Role, {foreignKey: {name: 'role_id'}})
 School.hasMany(Learner, {foreignKey: {name: 'school'}})
 Learner.belongsTo(School, {foreignKey: {name: 'school'}})
 //Learner, City
-tournament.City.hasMany(Learner, {foreignKey: {name: 'city'}})
-Learner.belongsTo(tournament.City, {foreignKey: {name: 'city'}})
-
-//MatchParticipant - Team
-Learner.hasMany(tournament.MatchParticipant, {foreignKey: 'user_id'})
-tournament.MatchParticipant.belongsTo(Learner, {foreignKey: 'user_id'})
-//MatchParticipant - Team
-Team.hasMany(tournament.MatchParticipant, {foreignKey: 'team_id'})
-tournament.MatchParticipant.belongsTo(Team, {foreignKey: 'team_id'})
-//Tournament - [TournamentParticipant] - Learner
-tournament.Tournament.belongsToMany(Learner, {through: 'TournamentParticipant', foreignKey: 'tournament_id'})
-Learner.belongsToMany(tournament.Tournament, {through: 'TournamentParticipant', foreignKey: 'user_id'})
+City.hasMany(Learner, {foreignKey: {name: 'city'}})
+Learner.belongsTo(City, {foreignKey: {name: 'city'}})
 //Teacher - [] - School
 Teacher.belongsToMany(School, {through: 'Teachers_school', foreignKey: 'teacher_id'})
 School.belongsToMany(Teacher, {through: 'Teachers_school', foreignKey: 'school_id'})
-//SportType - [] - Learner
-tournament.SportType.belongsToMany(Learner, {through: 'FavSportType', foreignKey: 'sport_type_id'})
-Learner.belongsToMany(tournament.SportType, {through: 'FavSportType', foreignKey: 'learner_id'})
-
-////Тесты не работают со связями внизу, т.к. у таблиц в model/tournament у 'id' нет автоинкремента, а в model/user есть
-/////////////////////////////////////////////
-/*//Learner, Match -> MatchParticipant
-Learner.belongsToMany(tournament.Match, {through: tournament.MatchParticipant, sourceKey: 'id', targetKey: 'id'})
-tournament.Match.belongsToMany(Learner, {through: tournament.MatchParticipant, sourceKey: 'id', targetKey: 'id'})
-//Learner, Tournament -> TournamentParticipant
-Learner.belongsToMany(tournament.Tournament, {through: tournament.TournamentParticipant, sourceKey: 'id', targetKey: 'id'})
-tournament.Tournament.belongsToMany(Learner, {through: tournament.Tournament, sourceKey: 'id', targetKey: 'id'})
-//Sport_type, Learner -> connecting table
-Learner.belongsToMany(tournament.SportType, {through: 'fav_sport_type', sourceKey: 'id', targetKey: 'id'})
-tournament.SportType.belongsToMany(Learner, {through: 'fav_sport_type', sourceKey: 'id', targetKey: 'id'})
-//School, Teacher -> connecting table
-Teacher.belongsToMany(School, {through: 'Teachers_school', sourceKey: 'id', targetKey: 'id'})
-School.belongsToMany(Teacher, {through: 'Teachers_school', sourceKey: 'id', targetKey: 'id'})
-//Tournament, Match
-tournament.Tournament.hasMany(tournament.Match, {foreignKey: {name: 'tournament_id'}})
-tournament.Match.belongsTo(tournament.Tournament, {foreignKey: {name: 'tournament_id'}})*/
-
 
 
 module.exports = {
@@ -109,5 +81,6 @@ module.exports = {
     Teacher: Teacher,
     Role: Role,
     Team: Team,
-    School: School
+    School: School,
+    City: City,
 }

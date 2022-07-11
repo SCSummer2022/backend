@@ -1,6 +1,6 @@
 const sequelize = require('./db');
 const {DataTypes} = require('sequelize');
-//const {Learner,Team} = require('./user');
+const {Learner,Team,City} = require('./user');
 
 const TournamentType = sequelize.sequelize.define('TournamentType', {
     id: {type: DataTypes.INTEGER, primaryKey: true},
@@ -12,10 +12,6 @@ const SportType = sequelize.sequelize.define('SportType', {
     name: {type: DataTypes.STRING, allowNull: false},
     code: {type: DataTypes.STRING, allowNull: false}
 });
-const City = sequelize.sequelize.define('City', {
-    id: {type: DataTypes.INTEGER, primaryKey: true},
-    name: {type: DataTypes.STRING, allowNull: false}
-});
 const Tournament = sequelize.sequelize.define('Tournament', {
     id: {type: DataTypes.INTEGER, primaryKey: true},
     name: {type: DataTypes.STRING, allowNull: false},
@@ -24,7 +20,6 @@ const Tournament = sequelize.sequelize.define('Tournament', {
     start_date : {type: DataTypes.DATE, allowNull: false},
     end_date : {type: DataTypes.DATE, allowNull: false},
     school_or_city : {type: DataTypes.BOOLEAN, allowNull: false},
-    city : {type: DataTypes.INTEGER},
     participants_min : {type: DataTypes.INTEGER},
     participants_max : {type: DataTypes.INTEGER},
     age_min : {type: DataTypes.INTEGER},
@@ -66,9 +61,6 @@ Tournament.belongsTo(TournamentType, {foreignKey: 'tournament_type_id'})
 SportType.hasMany(Tournament, {foreignKey: 'sport_type'})
 Tournament.belongsTo(SportType, {foreignKey: 'sport_type'})
 
-City.hasMany(Tournament, {foreignKey: 'city'})
-Tournament.belongsTo(City, {foreignKey: 'city'})
-
 MatchResult.hasMany(MatchParticipant, {foreignKey: 'match_result'})
 MatchParticipant.belongsTo(MatchResult, {foreignKey: 'match_result'})
 
@@ -81,10 +73,21 @@ Match.belongsTo(Tournament, {foreignKey: 'tournament_id'})
 Match.hasMany(MatchParticipant, {foreignKey: 'match_id'})
 MatchParticipant.belongsTo(Match, {foreignKey: 'match_id'})
 
+Learner.hasMany(MatchParticipant, {foreignKey: 'user_id'})
+MatchParticipant.belongsTo(Learner, {foreignKey: 'user_id'})
+
+Team.hasMany(MatchParticipant, {foreignKey: 'team_id'})
+MatchParticipant.belongsTo(Team, {foreignKey: 'team_id'})
+
+Tournament.belongsToMany(Learner, {through: 'TournamentParticipant', foreignKey: 'tournament_id'})
+Learner.belongsToMany(Tournament, {through: 'TournamentParticipant', foreignKey: 'user_id'})
+
+SportType.belongsToMany(Learner, {through: 'FavSportType', foreignKey: 'sport_type_id'})
+Learner.belongsToMany(SportType, {through: 'FavSportType', foreignKey: 'learner_id'})
+
 module.exports = {
     TournamentType: TournamentType,
     SportType: SportType,
-    City: City,
     Tournament: Tournament,
     CityParticipant: CityParticipant,
     TournamentParticipant: TournamentParticipant,
