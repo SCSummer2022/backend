@@ -4,6 +4,11 @@ const assert = require('assert');
 let service = require('../service/tournament');
 
 
+it('List of tournaments', async function () {
+    let body = { page: 1, size: 10 };
+    let response = await req(app).post('/tournament/search').send(body);
+    assert.notEqual(response.body, 1)
+});
 
 it('Search tournament', async function () {
     let tourID = 4;
@@ -47,12 +52,6 @@ it('Edit tournament', async function () {
 
     assert.equal(tournamentId, 6)
 
-});
-
-it('List of tournaments', async function () {
-    let body = { page: 1, size: 10 };
-    let response = await req(app).post('/tournament/search').send(body);
-    assert.equal(response.body, 1)
 });
 
 it('Delete tournament', async function () {

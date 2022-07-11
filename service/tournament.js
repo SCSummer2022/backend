@@ -74,7 +74,7 @@ async function getListOfTournaments(page, size) {
     }
     let startIndex = (page * size) - size;
     let AllTournaments = await Tournament.findAll({ offset: startIndex, limit: size });
-    return AllTournaments.length;
+    return AllTournaments;
 }
 
 module.exports = {
