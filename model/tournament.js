@@ -78,6 +78,9 @@ City.belongsToMany(Tournament, {through: 'CityParticipant', foreignKey: 'city_id
 Tournament.hasMany(Match, {foreignKey: 'tournament_id'})
 Match.belongsTo(Tournament, {foreignKey: 'tournament_id'})
 
+Match.hasMany(MatchParticipant, {foreignKey: 'match_id'})
+MatchParticipant.belongsTo(Match, {foreignKey: 'match_id'})
+
 module.exports = {
     TournamentType: TournamentType,
     SportType: SportType,

@@ -68,6 +68,21 @@ Learner.belongsTo(School, {foreignKey: {name: 'school'}})
 tournament.City.hasMany(Learner, {foreignKey: {name: 'city'}})
 Learner.belongsTo(tournament.City, {foreignKey: {name: 'city'}})
 
+//MatchParticipant - Team
+Learner.hasMany(tournament.MatchParticipant, {foreignKey: 'user_id'})
+tournament.MatchParticipant.belongsTo(Learner, {foreignKey: 'user_id'})
+//MatchParticipant - Team
+Team.hasMany(tournament.MatchParticipant, {foreignKey: 'team_id'})
+tournament.MatchParticipant.belongsTo(Team, {foreignKey: 'team_id'})
+//Tournament - [TournamentParticipant] - Learner
+tournament.Tournament.belongsToMany(Learner, {through: 'TournamentParticipant', foreignKey: 'tournament_id'})
+Learner.belongsToMany(tournament.Tournament, {through: 'TournamentParticipant', foreignKey: 'user_id'})
+//Teacher - [] - School
+Teacher.belongsToMany(School, {through: 'Teachers_school', foreignKey: 'teacher_id'})
+School.belongsToMany(Teacher, {through: 'Teachers_school', foreignKey: 'school_id'})
+//SportType - [] - Learner
+tournament.SportType.belongsToMany(Learner, {through: 'FavSportType', foreignKey: 'sport_type_id'})
+Learner.belongsToMany(tournament.SportType, {through: 'FavSportType', foreignKey: 'learner_id'})
 
 ////Тесты не работают со связями внизу, т.к. у таблиц в model/tournament у 'id' нет автоинкремента, а в model/user есть
 /////////////////////////////////////////////
