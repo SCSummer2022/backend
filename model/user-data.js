@@ -94,7 +94,7 @@ module.exports = {
             phone_number: '+73748378900',
             email: 'ssbot@mail.ru',
             password: 'ksteach93#',
-            city: 2,
+            city: 3,
             school: 2,
             access: true
         });

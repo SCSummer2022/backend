@@ -87,8 +87,8 @@ module.exports = {
             .then(() => MatchParticipant.create({
                     id: 3,
                     match_id: 3,
-                    user_id: 3,
-                    team_id: 13
+                    user_id: 1,
+                    team_id: 1
                 })
             )
         await MatchResult.sync()

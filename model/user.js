@@ -51,7 +51,7 @@ const Team = sequelize.sequelize.define('Team', {
     name: {type: DataTypes.STRING, allowNull: false}
 });
 
-
+//sequelize.sequelize.sync()
 
 //СВЯЗИ ТАБЛИЦ
 /////////////////////
@@ -69,14 +69,14 @@ tournament.City.hasMany(Learner, {foreignKey: {name: 'city'}})
 Learner.belongsTo(tournament.City, {foreignKey: {name: 'city'}})
 
 //MatchParticipant - Team
-Learner.hasMany(tournament.MatchParticipant, {foreignKey: 'user_id'})
-tournament.MatchParticipant.belongsTo(Learner, {foreignKey: 'user_id'})
+//Learner.hasMany(tournament.MatchParticipant, {foreignKey: 'user_id'})
+//tournament.MatchParticipant.belongsTo(Learner, {foreignKey: 'user_id'})
 //MatchParticipant - Team
-Team.hasMany(tournament.MatchParticipant, {foreignKey: 'team_id'})
-tournament.MatchParticipant.belongsTo(Team, {foreignKey: 'team_id'})
+//Team.hasMany(tournament.MatchParticipant, {foreignKey: 'team_id'})
+//tournament.MatchParticipant.belongsTo(Team, {foreignKey: 'team_id'})
 //Tournament - [TournamentParticipant] - Learner
-tournament.Tournament.belongsToMany(Learner, {through: 'TournamentParticipant', foreignKey: 'tournament_id'})
-Learner.belongsToMany(tournament.Tournament, {through: 'TournamentParticipant', foreignKey: 'user_id'})
+//tournament.Tournament.belongsToMany(Learner, {through: 'TournamentParticipant', foreignKey: 'tournament_id'})
+//Learner.belongsToMany(tournament.Tournament, {through: 'TournamentParticipant', foreignKey: 'user_id'})
 //Teacher - [] - School
 Teacher.belongsToMany(School, {through: 'Teachers_school', foreignKey: 'teacher_id'})
 School.belongsToMany(Teacher, {through: 'Teachers_school', foreignKey: 'school_id'})
