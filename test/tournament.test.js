@@ -50,9 +50,9 @@ it('Edit tournament', async function () {
 });
 
 it('List of tournaments', async function () {
-    body = { page: 1, size: 10 };
+    let body = { page: 1, size: 10 };
     let response = await req(app).post('/tournament/search').send(body);
-    assert.equal(body.page, 1)
+    assert.equal(response.body, 1)
 });
 
 it('Delete tournament', async function () {
