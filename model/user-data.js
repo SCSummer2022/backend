@@ -1,5 +1,4 @@
-const {Role, Learner, Teacher, Team, School} = require('./user');
-const {City} = require('./tournament');
+const {Role, Learner, Teacher, Team, School, City} = require('./user');
 
 
 let init = false;
@@ -7,9 +6,7 @@ let init = false;
 module.exports = {
     init: async function () {
         if (init) return;
-
         init = true;
-
 
         await Role.sync()
         await Role.create({name: 'Ученик'})
@@ -28,6 +25,7 @@ module.exports = {
         await City.sync()
         await City.create({id: 1, name: 'Москва'})
         await City.create({id: 2, name: 'Новосибирск'})
+        await City.create({id: 3, name: 'Ярославль'})
 
         await Learner.sync();
         await Learner.create({
@@ -94,10 +92,12 @@ module.exports = {
             phone_number: '+73748378900',
             email: 'ssbot@mail.ru',
             password: 'ksteach93#',
-            city: 2,
+            city: 3,
             school: 2,
             access: true
         });
 
+
+        await require('./tournament-data').init();
     }
 }

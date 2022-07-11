@@ -1,4 +1,4 @@
-const {TournamentType,SportType,City,Tournament,CityParticipant,TournamentParticipant,Match,MatchParticipant,MatchResult} = require('./tournament');
+const {TournamentType,SportType,Tournament,CityParticipant,TournamentParticipant,Match,MatchParticipant,MatchResult} = require('./tournament');
 
 let init = false;
 
@@ -6,6 +6,7 @@ module.exports = {
     init: async function () {
         if (init) return false;
         init = true;
+        await require('./user-data').init();
 
         await TournamentType.sync()
             .then(() => TournamentType.create({
@@ -21,12 +22,6 @@ module.exports = {
                     code: 'some_code'
                 })
             )
-        await City.sync()
-            .then(() => City.create({
-                    id: 3,
-                    name: 'some_name'
-                })
-            )
         await Tournament.sync()
             .then(() => Tournament.create({
                     id: 4,
@@ -36,7 +31,6 @@ module.exports = {
                     start_date : new Date(2022, 6, 20),
                     end_date : new Date(2022, 7, 21),
                     school_or_city : true,
-                    city : 3,
                     participants_min : 20,
                     participants_max : 23,
                     age_min : 12,
@@ -54,8 +48,8 @@ module.exports = {
             )
         await TournamentParticipant.sync()
             .then(() => TournamentParticipant.create({
-                    tournament_id: 3,
-                    user_id: 3
+                    tournament_id: 4,
+                    user_id: 4
                 })
             )
         await Match.sync()
@@ -87,8 +81,8 @@ module.exports = {
             .then(() => MatchParticipant.create({
                     id: 3,
                     match_id: 3,
-                    user_id: 3,
-                    team_id: 13
+                    user_id: 1,
+                    team_id: 1
                 })
             )
         await MatchResult.sync()
