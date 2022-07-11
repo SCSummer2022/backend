@@ -48,7 +48,7 @@ module.exports = {
             )
         await CityParticipant.sync()
             .then(() => CityParticipant.create({
-                    tournament_id: 3,
+                    tournament_id: 4,
                     city_id: 3
                 })
             )

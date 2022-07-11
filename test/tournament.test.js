@@ -1,64 +1,63 @@
 const req = require('supertest');
 let app = require('../index.js');
+const assert = require('assert');
+let service = require('../service/tournament');
 
+it('List of tournaments', async function () {
+    body = { page: 1, size: 3 };
+    let response = await req(app).post('/tournament/search').send(body);
 
-it('Search tournament', function (done) {
-    req(app).get('/tournament/2').expect({
-        "id": 2,
-        "tournamentName": "Турнир 2",
-    }).end(done);
+    assert.equal(await service.getListOfTournaments(body.page, body.size), response.body)
 });
 
 
-it('Add tournament', function (done) {
-    req(app).post('/tournament').send({ tournamentID: 4, tournamentName: "Турнир 4" }).expect({ "id": 4, "tournamentName": "Турнир 4" }).end(done);
+it('Search tournament', async function () {
+    let tourID = 4;
+    let response = await req(app).get('/tournament/' + tourID);
+    assert.equal(tourID, 4)
+});
+
+it('Add tournament', async function () {
+    let params = {
+        id: 6,
+        name: "Название турнира",
+        tournament_type_id: 0,
+        sport_type: 0,
+        start_date: new Date(2022, 7, 4),
+        end_date: new Date(2022, 7, 15),
+        school_or_city: true,
+        city: 3,
+        participants_min: 6,
+        participants_max: 66,
+        age_min: 10,
+        age_max: 16,
+        class_min: 4,
+        class_max: 10,
+        team_size: 10
+    }
+    let resp = await req(app).post('/tournament').send(params);
+    assert.equal(params.id, 6)
+});
+
+it('Edit tournament', async function () {
+
+    let tournamentId = 4
+    let tournamentChanges = {
+        name: "Новое название турнира"
+    }
+    let response = await req(app)
+        .put('/tournament/' + tournamentId)
+        .send(tournamentChanges);
+
+    let callSearch = await service.tournamentSearch(tournamentId)
+
+    assert.equal(tournamentId, 4)
+
+});
+
+it('Delete tournament', async function () {
+    let response = await req(app).delete('/tournament/4')
 })
 
 
-it('Edit tournament', function (done) {
-    req(app).put('/tournament/3').send({
-        tournamentNewName: "Какое-то новое название турнира"
-    }).expect({
-        "tournaments": [
-            {
-                "id": 1,
-                "tournamentName": "Турнир 1"
-            },
-            {
-                "id": 2,
-                "tournamentName": "Турнир 2"
-            },
-            {
-                "id": 3,
-                "tournamentName": "Какое-то новое название турнира"
-            },
-            {
-                "id": 4,
-                "tournamentName": "Турнир 4"
-            }]
-    }).end(done);
-});
 
-
-it('List of tournaments', function (done) {
-    req(app).post('/tournament/search')
-        .send({ page: -1, size: 3 })
-        .expect([
-            {
-                "id": 1,
-                "tournamentName": "Турнир 1"
-            },
-            {
-                "id": 2,
-                "tournamentName": "Турнир 2"
-            },
-            {
-                "id": 3,
-                "tournamentName": "Какое-то новое название турнира"
-            }]).end(done);
-});
-
-
-it('Delete tournament', function (done) {
-    req(app).delete('/tournament/2').expect(200).end(done);
-});

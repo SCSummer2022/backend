@@ -18,9 +18,7 @@ function getModelData(model) {
 async function tournamentSearch(tournamentID) {
     await initData();
 
-    let tournament = await Tournament.findOne({
-        where: { id: tournamentID }
-    });
+    let tournament = await Tournament.findByPk(tournamentID);
     return getModelData(tournament);
 }
 
@@ -28,7 +26,7 @@ async function tournamentSearch(tournamentID) {
 async function tournamentAdd(newTrnmnt) {
     await initData();
 
-    await Tournament.create({
+    let addTour = await Tournament.create({
         id: newTrnmnt.id,
         name: newTrnmnt.name,
         tournament_type_id: newTrnmnt.tournament_type_id,
@@ -45,7 +43,7 @@ async function tournamentAdd(newTrnmnt) {
         class_max: newTrnmnt.class_max,
         team_size: newTrnmnt.team_size
     });
-
+    return addTour;
 }
 
 //Редактирование турнира
@@ -67,43 +65,26 @@ async function tournamentDel(tournamentIdForDel) {
 }
 
 //Поиск постранично
-// async function getListOfTournaments(page, size) {
-//     await initData()
+async function getListOfTournaments(page, size) {
+    await initData()
+    if (page < 0 || size < 1) {
+        return
+    }
+    let AllTournaments = await Tournament.findAll();
 
-//     if (page < 0 || size < 1) {
-//         return
-//     }
-
-//     let listOfTournaments = await Tournament.findAll({
-//     });
-
-//     let listOfTournamentsParsed = getModelData(listOfTournaments);
-
-//     let index, offSet
-
-//     if (page == 1 || page <= 0) {
-//         index = 0;
-//         offSet = size;
-//     }
-
-//     else if (page > listOfTournamentsParsed.length) {
-//         index = page - 1;
-//         offSet = listOfTournamentsParsed.length;
-//     }
-
-//     else {
-//         index = page * size - size;
-//         offSet = index + size;
-//     }
-//     const slicedItems = listOfTournamentsParsed.slice(index, offSet);
-
-//     return slicedItems;
-// }
+    let startIndex = page * size;
+    let indexAfter = Math.min(startIndex + size, AllTournaments.length);
+    let parsedTournaments = [];
+    for (let currIndex = startIndex; currIndex < indexAfter; currIndex++) {
+        parsedTournaments.push(getModelData(AllTournaments[currIndex]))
+    }
+    return parsedTournaments
+}
 
 module.exports = {
     tournamentSearch: tournamentSearch,
     tournamentAdd: tournamentAdd,
     tournamentEdit: tournamentEdit,
     tournamentDel: tournamentDel,
-    // getListOfTournaments: getListOfTournaments
+    getListOfTournaments: getListOfTournaments
 }

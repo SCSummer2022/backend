@@ -6,13 +6,13 @@ router.use(bodyParser.json())
 
 let service = require('../service/tournament');
 
-//Поиск постранично
-// router.post('/search', (req, res) => {
-//     let page = Number(req.body.page);
-//     let size = Number(req.body.size);
-//     let search = service.getListOfTournaments(page, size);
-//     res.json(search);
-// });
+// Поиск постранично
+router.post('/search', (req, res) => {
+    let page = Number(req.body.page);
+    let size = Number(req.body.size);
+    let search = service.getListOfTournaments(page, size);
+    res.json(search);
+});
 
 //Удаление турнира
 router.delete('/:id', (req, res) => {
