@@ -12,7 +12,7 @@ describe("learners tests", () => {
         let page = 2;
         let pageSize = 2;
         let response = await request(app)
-            .post(`/learners/search?page=${page}&pageSize=${pageSize}`);
+            .get(`/learners/search?page=${page}&pageSize=${pageSize}`);
 
         assert.equal(response.body[1].id, 4)
     });
@@ -47,7 +47,7 @@ describe("learners tests", () => {
 
 describe("teachers tests", () => {
     it('Вернуть информацию об учителях', async function () {
-        let response = await request(app).post('/teachers/search?page=1&pageSize=1');
+        let response = await request(app).get('/teachers/search?page=1&pageSize=1');
         assert.equal(response.body[0].id, 1)
     })
     it('Вернуть информацию о новом учителе', async function () {
