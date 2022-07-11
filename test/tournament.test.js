@@ -1,13 +1,13 @@
 const req = require('supertest');
-let app = require('../index.js');
+let app = require('../index.js').app;
 const assert = require('assert');
 let service = require('../service/tournament');
 
 it('List of tournaments', async function () {
-    body = { page: 1, size: 3 };
+    body = { page: 0, size: 3 };
     let response = await req(app).post('/tournament/search').send(body);
 
-    assert.equal(await service.getListOfTournaments(body.page, body.size), response.body)
+    assert.equal((await service.getListOfTournaments(body.page, body.size)).length, response.body.length)
 });
 
 

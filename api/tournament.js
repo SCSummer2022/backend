@@ -7,10 +7,10 @@ router.use(bodyParser.json())
 let service = require('../service/tournament');
 
 // Поиск постранично
-router.post('/search', (req, res) => {
+router.post('/search', async (req, res) => {
     let page = Number(req.body.page);
     let size = Number(req.body.size);
-    let search = service.getListOfTournaments(page, size);
+    let search = await service.getListOfTournaments(page, size);
     res.json(search);
 });
 
