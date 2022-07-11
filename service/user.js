@@ -33,14 +33,9 @@ module.exports = {
 //методы учителя
     getTeachersInfo: async function (pageParams) {
         await require('../model/user-data').init();
-        let teacherInfo;
-        let page = pageParams.page;
+        let page = pageParams.page - 1;
         let pageSize = pageParams.pageSize;
-        let teachersList = new Array();
-        for (let i = page*pageSize-pageSize+1; i <= page*pageSize; i++){
-            teacherInfo = await Teacher.findByPk(i);
-            teachersList.push(teacherInfo)
-        }
+        let teachersList = await Teacher.findAll({offset: page*pageSize, limit: pageSize});
         return teachersList
     },
     addNewTeacher: async function (teacherParams) {
