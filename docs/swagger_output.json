@@ -488,10 +488,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "matchId": {
+                "id": {
                   "example": "integer"
                 },
-                "matchName": {
+                "name": {
                   "example": "any"
                 }
               }
@@ -527,10 +527,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "matchId": {
+                "id": {
                   "example": "integer"
                 },
-                "matchName": {
+                "name": {
                   "example": "any"
                 }
               }
