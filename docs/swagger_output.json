@@ -5,7 +5,7 @@
     "title": "REST API",
     "description": "API проекта 'Сеточных Турниров Система'"
   },
-  "host": "sts-practice.herokuapp.com",
+  "host": "sc-tournament-system.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "https"
