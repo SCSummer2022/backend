@@ -379,6 +379,21 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "integer"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -403,6 +418,21 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "integer"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
