@@ -66,7 +66,7 @@ describe("teachers tests", () => {
         }
         let response = await request(app)
             .post(`/teachers?role_id=${TestTeacher.role_id}&last_name=${TestTeacher.last_name}&first_name=${TestTeacher.first_name}&second_name=${TestTeacher.second_name}&birthday=${TestTeacher.birthday.toISOString()}&city=${TestTeacher.city}&school=${TestTeacher.school}&email=${TestTeacher.email}&access=${TestTeacher.access}&password=${TestTeacher.password}`);
-
+        
         assert.equal(response.body.id, 2)
     })
 

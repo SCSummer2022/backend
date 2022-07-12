@@ -1,0 +1,570 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/learners/search": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/learners": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "role_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "second_name",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "birthday",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "school",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "fav_sport_types",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/learners/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "role_id",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "second_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "birthday",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "school",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "fav_sport_types",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teachers/search": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teachers": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "role_id",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "second_name",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "birthday",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "school",
+            "in": "query",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "access",
+            "in": "query",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teachers/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "role_id",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "second_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "birthday",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "school",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "access",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tournament/{tournamentId}/match/search": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "tournamentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "example": "any"
+                },
+                "pageSize": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tournament/{tournamentId}/match": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "tournamentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "matchId": {
+                  "example": "integer"
+                },
+                "matchName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tournament/{tournamentId}/match/{matchId}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "tournamentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "matchId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "matchId": {
+                  "example": "integer"
+                },
+                "matchName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "tournamentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "matchId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
