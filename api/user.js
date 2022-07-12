@@ -6,7 +6,7 @@ router.use(bodyParser.json())
 let service = require('../service/user');
 
 //УЧЕНИК
-let learnersSearch = async function (req, res) {0
+let learnersSearch = async function (req, res) {
     let pageParams = req.body;
     let learnersList = await service.getLearnersInfo(pageParams);
     res.json(learnersList)
