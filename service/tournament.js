@@ -15,12 +15,15 @@ function getModelData(model) {
 }
 
 //Поиск конкретного турнира
-async function tournamentSearch(tournamentID) {
-    await initData();
-
-    let tournament = await Tournament.findByPk(tournamentID);
-    return getModelData(tournament);
-}
+// async function tournamentSearch(tournamentID) {
+//     await initData();
+// 
+// let tournament = await Tournament.findOne({
+//     where: { id: 4 }
+// })
+//     let AllTournaments = await Tournament.findOne({ where: { id: Number(tournamentID) } });
+//     return AllTournaments;
+// }
 
 //Добавление турнира
 async function tournamentAdd(newTrnmnt) {
@@ -35,25 +38,19 @@ async function tournamentAdd(newTrnmnt) {
         end_date: newTrnmnt.end_date,
         school_or_city: newTrnmnt.school_or_city,
         city: newTrnmnt.city,
-        participants_min: newTrnmnt.participants_min,
-        participants_max: newTrnmnt.participants_max,
-        age_min: newTrnmnt.age_min,
-        age_max: newTrnmnt.age_max,
-        class_min: newTrnmnt.class_min,
-        class_max: newTrnmnt.class_max,
         team_size: newTrnmnt.team_size
     });
-    // return addTour;
+    return addTour;
 }
 
 //Редактирование турнира
 async function tournamentEdit(tournamentID, changes) {
     await initData();
 
-    let updated = await Tournament.findByPk(tournamentID);
-    updated.set(changes);
-    await updated.save();
-    return updated
+    await Tournament.update(changes, {
+        where: { id: tournamentID }
+    })
+
 }
 
 //Удаление
@@ -78,7 +75,7 @@ async function getListOfTournaments(page, size) {
 }
 
 module.exports = {
-    tournamentSearch: tournamentSearch,
+    // tournamentSearch: tournamentSearch,
     tournamentAdd: tournamentAdd,
     tournamentEdit: tournamentEdit,
     tournamentDel: tournamentDel,

@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "REST API",
-    "description": "API проекта 'Сеточных Турниров Система'"
+    "description": ""
   },
   "host": "sc-tournament-system.herokuapp.com",
   "basePath": "/",
@@ -13,24 +13,8 @@
   "paths": {
     "/learners/search": {
       "post": {
-        "description": "Поиск учеников с параметрами страницы",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "page": {
-                  "example": "integer"
-                },
-                "pageSize": {
-                  "example": "integer"
-                }
-              }
-            }
-          }
-        ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -40,54 +24,8 @@
     },
     "/learners": {
       "post": {
-        "description": "Добавление нового ученика",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "role_id": {
-                  "example": "integer"
-                },
-                "last_name": {
-                  "example": "string"
-                },
-                "first_name": {
-                  "example": "string"
-                },
-                "second_name": {
-                  "example": "string"
-                },
-                "birthday": {
-                  "example": "dateonly"
-                },
-                "phone_number": {
-                  "example": "integer, optional"
-                },
-                "email": {
-                  "example": "example@example.com"
-                },
-                "password": {
-                  "example": "string"
-                },
-                "city": {
-                  "example": "integer"
-                },
-                "school": {
-                  "example": "integer"
-                },
-                "class": {
-                  "example": "integer"
-                },
-                "fav_sport_types": {
-                  "example": "string"
-                }
-              }
-            }
-          }
-        ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -97,7 +35,7 @@
     },
     "/learners/{id}": {
       "delete": {
-        "description": "Удаление ученика",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -113,58 +51,13 @@
         }
       },
       "put": {
-        "description": "Обновление данных ученика",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "role_id": {
-                  "example": "integer"
-                },
-                "last_name": {
-                  "example": "string"
-                },
-                "first_name": {
-                  "example": "string"
-                },
-                "second_name": {
-                  "example": "string"
-                },
-                "birthday": {
-                  "example": "dateonly"
-                },
-                "phone_number": {
-                  "example": "integer"
-                },
-                "email": {
-                  "example": "example@example.com"
-                },
-                "password": {
-                  "example": "string"
-                },
-                "city": {
-                  "example": "integer"
-                },
-                "school": {
-                  "example": "integer"
-                },
-                "class": {
-                  "example": "integer"
-                },
-                "fav_sport_types": {
-                  "example": "string"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -176,24 +69,8 @@
     },
     "/teachers/search": {
       "post": {
-        "description": "Поиск учителей с параметрами страницы",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "page": {
-                  "example": "integer"
-                },
-                "pageSize": {
-                  "example": "integer"
-                }
-              }
-            }
-          }
-        ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -203,54 +80,8 @@
     },
     "/teachers": {
       "post": {
-        "description": "Добавление нового учителя",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "role_id": {
-                  "example": "integer"
-                },
-                "last_name": {
-                  "example": "string"
-                },
-                "first_name": {
-                  "example": "string"
-                },
-                "second_name": {
-                  "example": "string"
-                },
-                "birthday": {
-                  "example": "dateonly"
-                },
-                "phone_number": {
-                  "example": "integer, optional"
-                },
-                "email": {
-                  "example": "example@example.com"
-                },
-                "password": {
-                  "example": "string"
-                },
-                "city": {
-                  "example": "integer"
-                },
-                "school": {
-                  "example": "integer"
-                },
-                "class": {
-                  "example": "integer, optional"
-                },
-                "access": {
-                  "example": "boolean"
-                }
-              }
-            }
-          }
-        ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -260,7 +91,7 @@
     },
     "/teachers/{id}": {
       "delete": {
-        "description": "Удаление ученика",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -276,58 +107,13 @@
         }
       },
       "put": {
-        "description": "Обновление ученика",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "role_id": {
-                  "example": "integer"
-                },
-                "last_name": {
-                  "example": "string"
-                },
-                "first_name": {
-                  "example": "string"
-                },
-                "second_name": {
-                  "example": "string"
-                },
-                "birthday": {
-                  "example": "dateonly"
-                },
-                "phone_number": {
-                  "example": "integer"
-                },
-                "email": {
-                  "example": "example@example.com"
-                },
-                "password": {
-                  "example": "string"
-                },
-                "city": {
-                  "example": "integer"
-                },
-                "school": {
-                  "example": "integer"
-                },
-                "class": {
-                  "example": "integer"
-                },
-                "access": {
-                  "example": "boolean"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -379,21 +165,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "integer"
-                },
-                "name": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -418,21 +189,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "example": "integer"
-                },
-                "name": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -455,6 +211,124 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tournament/search": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tournament/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tournament": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "tournament_type_id": {
+                  "example": "any"
+                },
+                "sport_type": {
+                  "example": "any"
+                },
+                "start_date": {
+                  "example": "any"
+                },
+                "end_date": {
+                  "example": "any"
+                },
+                "school_or_city": {
+                  "example": "any"
+                },
+                "team_size": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
