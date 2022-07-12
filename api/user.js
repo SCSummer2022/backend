@@ -1,17 +1,19 @@
 const express = require('express');
+let bodyParser = require('body-parser')
 let router = express.Router();
+router.use(bodyParser.json())
 
 let service = require('../service/user');
 
 //УЧЕНИК
-let learnersSearch = async function (req, res) {
-    let pageParams = req.query;
+let learnersSearch = async function (req, res) {0
+    let pageParams = req.body;
     let learnersList = await service.getLearnersInfo(pageParams);
     res.json(learnersList)
 }
 
 let learnerAdd = async function (req, res) {
-    let learnerParams = req.query;
+    let learnerParams = req.body;
     let learnerInfo = await service.addNewLearner(learnerParams);
     res.json(learnerInfo)
 }
@@ -23,20 +25,20 @@ let learnerDelete = async function (req, res) {
 }
 let learnerUpdate = async function (req, res) {
     let learnerId = req.params.id;
-    let learnerParams = req.query;
+    let learnerParams = req.body;
     let learnerInfo = await service.updateLearner(learnerId, learnerParams);
     res.json(learnerInfo)
 }
 
 //УЧИТЕЛЬ
 let teachersSearch = async function (req, res) {
-    let pageParams = req.query;
+    let pageParams = req.body;
     let teachersList = await service.getTeachersInfo(pageParams);
     res.json(teachersList)
 }
 
 let teacherAdd = async function (req, res) {
-    let teacherParams = req.query;
+    let teacherParams = req.body;
     let teacherInfo = await service.addNewTeacher(teacherParams);
     res.json(teacherInfo)
 }
@@ -49,7 +51,7 @@ let teacherDelete = async function (req, res) {
 
 let teacherUpdate = async function (req, res) {
     let teacherId = req.params.id;
-    let teacherParams = req.query;
+    let teacherParams = req.body;
     let teacherInfo = await service.updateTeacher(teacherId, teacherParams);
     res.json(teacherInfo)
 }

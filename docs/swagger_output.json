@@ -13,19 +13,22 @@
   "paths": {
     "/learners/search": {
       "post": {
-        "description": "",
+        "description": "Поиск учеников с параметрами страницы",
         "parameters": [
           {
-            "name": "page",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "example": "integer"
+                },
+                "pageSize": {
+                  "example": "integer"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -37,79 +40,52 @@
     },
     "/learners": {
       "post": {
-        "description": "",
+        "description": "Добавление нового ученика",
         "parameters": [
           {
-            "name": "role_id",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "last_name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "first_name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "second_name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "birthday",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "phone_number",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "city",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "school",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "class",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "fav_sport_types",
-            "in": "query",
-            "required": false,
-            "type": "integer"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role_id": {
+                  "example": "integer"
+                },
+                "last_name": {
+                  "example": "string"
+                },
+                "first_name": {
+                  "example": "string"
+                },
+                "second_name": {
+                  "example": "string"
+                },
+                "birthday": {
+                  "example": "dateonly"
+                },
+                "phone_number": {
+                  "example": "integer, optional"
+                },
+                "email": {
+                  "example": "example@example.com"
+                },
+                "password": {
+                  "example": "string"
+                },
+                "city": {
+                  "example": "integer"
+                },
+                "school": {
+                  "example": "integer"
+                },
+                "class": {
+                  "example": "integer"
+                },
+                "fav_sport_types": {
+                  "example": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -121,7 +97,7 @@
     },
     "/learners/{id}": {
       "delete": {
-        "description": "",
+        "description": "Удаление ученика",
         "parameters": [
           {
             "name": "id",
@@ -137,7 +113,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Обновление данных ученика",
         "parameters": [
           {
             "name": "id",
@@ -146,76 +122,49 @@
             "type": "string"
           },
           {
-            "name": "role_id",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "last_name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "first_name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "second_name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "birthday",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "phone_number",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "city",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "school",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "class",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "fav_sport_types",
-            "in": "query",
-            "required": false,
-            "type": "integer"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role_id": {
+                  "example": "integer"
+                },
+                "last_name": {
+                  "example": "string"
+                },
+                "first_name": {
+                  "example": "string"
+                },
+                "second_name": {
+                  "example": "string"
+                },
+                "birthday": {
+                  "example": "dateonly"
+                },
+                "phone_number": {
+                  "example": "integer"
+                },
+                "email": {
+                  "example": "example@example.com"
+                },
+                "password": {
+                  "example": "string"
+                },
+                "city": {
+                  "example": "integer"
+                },
+                "school": {
+                  "example": "integer"
+                },
+                "class": {
+                  "example": "integer"
+                },
+                "fav_sport_types": {
+                  "example": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -227,19 +176,22 @@
     },
     "/teachers/search": {
       "post": {
-        "description": "",
+        "description": "Поиск учителей с параметрами страницы",
         "parameters": [
           {
-            "name": "page",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": true,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "example": "integer"
+                },
+                "pageSize": {
+                  "example": "integer"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -251,79 +203,52 @@
     },
     "/teachers": {
       "post": {
-        "description": "",
+        "description": "Добавление нового учителя",
         "parameters": [
           {
-            "name": "role_id",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "last_name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "first_name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "second_name",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "birthday",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "phone_number",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "city",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "school",
-            "in": "query",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "name": "class",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "access",
-            "in": "query",
-            "required": true,
-            "type": "boolean"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role_id": {
+                  "example": "integer"
+                },
+                "last_name": {
+                  "example": "string"
+                },
+                "first_name": {
+                  "example": "string"
+                },
+                "second_name": {
+                  "example": "string"
+                },
+                "birthday": {
+                  "example": "dateonly"
+                },
+                "phone_number": {
+                  "example": "integer, optional"
+                },
+                "email": {
+                  "example": "example@example.com"
+                },
+                "password": {
+                  "example": "string"
+                },
+                "city": {
+                  "example": "integer"
+                },
+                "school": {
+                  "example": "integer"
+                },
+                "class": {
+                  "example": "integer, optional"
+                },
+                "access": {
+                  "example": "boolean"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -335,7 +260,7 @@
     },
     "/teachers/{id}": {
       "delete": {
-        "description": "",
+        "description": "Удаление ученика",
         "parameters": [
           {
             "name": "id",
@@ -351,7 +276,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Обновление ученика",
         "parameters": [
           {
             "name": "id",
@@ -360,76 +285,49 @@
             "type": "string"
           },
           {
-            "name": "role_id",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "last_name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "first_name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "second_name",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "birthday",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "phone_number",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "city",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "school",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "class",
-            "in": "query",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "access",
-            "in": "query",
-            "required": false,
-            "type": "boolean"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "role_id": {
+                  "example": "integer"
+                },
+                "last_name": {
+                  "example": "string"
+                },
+                "first_name": {
+                  "example": "string"
+                },
+                "second_name": {
+                  "example": "string"
+                },
+                "birthday": {
+                  "example": "dateonly"
+                },
+                "phone_number": {
+                  "example": "integer"
+                },
+                "email": {
+                  "example": "example@example.com"
+                },
+                "password": {
+                  "example": "string"
+                },
+                "city": {
+                  "example": "integer"
+                },
+                "school": {
+                  "example": "integer"
+                },
+                "class": {
+                  "example": "integer"
+                },
+                "access": {
+                  "example": "boolean"
+                }
+              }
+            }
           }
         ],
         "responses": {
