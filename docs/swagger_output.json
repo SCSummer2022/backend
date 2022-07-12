@@ -3,12 +3,12 @@
   "info": {
     "version": "1.0.0",
     "title": "REST API",
-    "description": ""
+    "description": "API проекта 'Сеточных Турниров Система'"
   },
-  "host": "localhost:3000",
+  "host": "sts-practice.herokuapp.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/learners/search": {
