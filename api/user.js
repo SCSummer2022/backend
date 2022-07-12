@@ -55,13 +55,13 @@ let teacherUpdate = async function (req, res) {
 }
 
 //УЧЕНИК
-router.get('/learners/search', learnersSearch)
+router.post('/learners/search', learnersSearch)
 router.post('/learners', learnerAdd)
 router.delete('/learners/:id', learnerDelete)
 router.put('/learners/:id', learnerUpdate)
 
 //УЧИТЕЛЬ
-router.get('/teachers/search', teachersSearch)
+router.post('/teachers/search', teachersSearch)
 router.post('/teachers', teacherAdd)
 router.delete('/teachers/:id', teacherDelete)
 router.put('/teachers/:id', teacherUpdate)

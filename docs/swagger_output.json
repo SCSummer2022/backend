@@ -12,7 +12,7 @@
   ],
   "paths": {
     "/learners/search": {
-      "get": {
+      "post": {
         "description": "",
         "parameters": [
           {
@@ -226,7 +226,7 @@
       }
     },
     "/teachers/search": {
-      "get": {
+      "post": {
         "description": "",
         "parameters": [
           {
