@@ -43,9 +43,9 @@ async function addMatch(tournamentId, matchData) {
     await initData()
 
     await Match.create({
-        id: matchData.matchId,
+        id: matchData.id,
         tournament_id: tournamentId,
-        name: matchData.matchName
+        name: matchData.name
     })
 }
 

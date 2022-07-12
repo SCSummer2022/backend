@@ -23,14 +23,14 @@ it('Поиск матчей (POST)', async function () {
 it('Добавление матча (POST)', async function () {
     let tournamentId = 4
     let matchData = {
-        matchId: 14,
-        matchName: 'Добавленный матч'
+        id: 14,
+        name: 'Добавленный матч'
     }
     let response = await request(app)
         .post('/tournament/' + tournamentId + '/match').
         send(matchData);
 
-    assert.notEqual(await service.findMatch(tournamentId, matchData.matchId), null)
+    assert.notEqual(await service.findMatch(tournamentId, matchData.id), null)
 });
 
 it('Обновление матча (PUT)', async function () {
