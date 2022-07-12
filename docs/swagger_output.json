@@ -5,7 +5,7 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "sts-practice.herokuapp.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "http"
